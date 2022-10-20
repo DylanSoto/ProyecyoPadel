@@ -9,7 +9,8 @@ class Partida
     private Pista $pista;
     private Intervalo $intervalo;
 
-    public function __construct(Pareja $pareja1, Pareja $pareja2){
+    public function __construct(Pareja $pareja1, Pareja $pareja2)
+    {
         $this->pareja1 = $pareja1;
         $this->pareja2 = $pareja2;
     }
