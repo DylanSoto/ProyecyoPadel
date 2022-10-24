@@ -2,6 +2,7 @@
 
 //    use \App\Persona;
     namespace App;
+    use App\Horarios\Intervalo;
     use App\Personas\Enum\LadoPreferido;
     use App\Personas\Enum\ManoHabil;
     use App\Personas\Jugador;
@@ -11,20 +12,33 @@
     include_once("App/Personas/Jugador.php");
     include_once("App/Personas/Enum/ManoHabil.php");
     include_once("App/Personas/Enum/LadoPreferido.php");
+    include_once ("App/Horarios/Intervalo.php");
 
 
     $persona = new Persona('12345678A', 'Javier', 'Gonzalez');
 
-    var_dump($persona);
 
     echo "<br>";
     echo "<br>";
 
-    $jugador = new Jugador('45931348A',
+/*    $jugador = new Jugador('45931348A',
         'Rocio',
         'Gutierrez',
         1,
         ManoHabil::zurdo,
-        LadoPreferido::izquierdo);
+        LadoPreferido::izquierdo);*/
 
-    var_dump($jugador);
+
+    $intervalo = new Intervalo(8.00, 9.00);
+    $intervalo2 = new Intervalo(9.00, 10.00);
+    $intervalo3 = new Intervalo(10.00, 11.00);
+    $array = [$intervalo, $intervalo2, $intervalo3];
+
+    var_dump($intervalo);
+    echo "<br>";
+    var_dump($intervalo2);
+    echo "<br>";
+    var_dump($intervalo3);
+    echo "<br>";
+
+    print_r($array);

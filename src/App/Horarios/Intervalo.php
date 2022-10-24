@@ -6,12 +6,12 @@ use App\Personas\Jugador;
 
 class Intervalo
 {
-    private float $horaInicio;
-    private float $horaFin;
+    private \DateTime $horaInicio;
+    private \DateTime $horaFin;
     private bool $disponibilidad;
     private Jugador $socioReservado;
 
-    public function __construct(int $horaInicio, int $horaFin)
+    public function __construct(\DateTime $horaInicio, \DateTime $horaFin)
     {
         $this->horaInicio = $horaInicio;
         $this->horaFin = $horaFin;
@@ -21,7 +21,7 @@ class Intervalo
     /**
      * @return int
      */
-    public function getHoraInicio(): int
+    public function getHoraInicio(): \DateTime
     {
         return $this->horaInicio;
     }
@@ -29,7 +29,7 @@ class Intervalo
     /**
      * @param int $horaInicio
      */
-    public function setHoraInicio(int $horaInicio): void
+    public function setHoraInicio(\DateTime $horaInicio): void
     {
         $this->horaInicio = $horaInicio;
     }
@@ -37,7 +37,7 @@ class Intervalo
     /**
      * @return int
      */
-    public function getHoraFin(): int
+    public function getHoraFin(): \DateTime
     {
         return $this->horaFin;
     }
@@ -45,7 +45,7 @@ class Intervalo
     /**
      * @param int $horaFin
      */
-    public function setHoraFin(int $horaFin): void
+    public function setHoraFin(\DateTime $horaFin): void
     {
         $this->horaFin = $horaFin;
     }
