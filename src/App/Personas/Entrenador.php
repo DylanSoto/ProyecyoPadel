@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Personas;
 
 class Entrenador extends Empleado
 {
-    private $nivelEntrenador;
-    private $numFederacion;
-    private $pupilo;
+    private int $nivelEntrenador;
+    private int $numFederacion;
+    private Jugador $pupilo;
 
     public function __construct(string $nombre, string $apellidos, string $dni, string $direccion, string $cuentaCorriente, string $numSegSocial, int $nivelEntrenador, int $numFederacion, Jugador $pupilo)
     {

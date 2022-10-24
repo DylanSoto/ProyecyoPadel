@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Servicios\Enum;
 
 enum TipoPista
 {

@@ -1,17 +1,22 @@
 <?php
 
-namespace App;
+namespace App\Servicios;
+
+use App\Horario\HorarioDiario;
+use App\Horario\HorarioMensual;
+use App\Personas\Jugador;
+use App\Servicios\Enum\TipoPista;
 
 class Pista extends HorarioMensual
 {
-    private $idPista;
-    private $precio;
-    private $luz;
-    private $precioLuz;
-    private $tipoPista;
-    private $cubierta;
-    private $disponible;
-    private $reservasPistasMensual;
+    private int $idPista;
+    private float $precio;
+    private bool $luz;
+    private float $precioLuz;
+    private TipoPista $tipoPista;
+    private bool $cubierta;
+    private bool $disponible;
+    private array $reservasPistasMensual;
 
     public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, date $fecha, hora $horaApertura, hora $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario, int $idPista, float $precio, bool $luz, float $precioLuz, TipoPista $tipoPista, bool $cubierta, bool $disponible, array $reservasPistasMensual)
     {

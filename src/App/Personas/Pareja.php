@@ -1,6 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Personas;
+
+use App\Horario\HorarioMensual;
+use App\Personas\Enum\LadoPreferido;
+use App\Personas\Enum\ManoHabil;
 
 class Pareja extends Jugador
 {

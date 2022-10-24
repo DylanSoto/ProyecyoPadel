@@ -1,21 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Personas;
+
+use App\Horario\HorarioMensual;
+use App\Personas\Enum\LadoPreferido;
+use App\Personas\Enum\ManoHabil;
 
 class Jugador extends Persona
 {
-    private $nivelJuego;
-    private $manoHabil;
-    private $ladoPreferido;
-    private $horarioMensualPreferido;
-    private $renovacionAutoHorario;
-    private $indiceDeIrresponsabilidad;
-    private $numFederacion;
-    private $fisioAsociado;
-    private $entrenadorPersonal;
-    private $jugador;
+    private int $nivelJuego;
+    private ManoHabil $manoHabil;
+    private LadoPreferido $ladoPreferido;
+    private HorarioMensual $horarioMensualPreferido;
+    private bool $renovacionAutoHorario;
+    private int $indiceDeIrresponsabilidad;
+    private int $numFederacion;
+    private Fisioterapeuta $fisioAsociado;
+    private Entrenador $entrenadorPersonal;
+    private bool $socio;
 
-    public function __construct(string $dni, string $nombre, string $apellidos, int $nivelJuego, ManoHabil $manoHabil, LadoPreferido $ladoPreferido, HorarioMensual $horarioMensualPreferido, int $indiceDeIrresponsabilidad, int $numFederacion, Fisioterapeuta $fisioAsociado, Entrenador $entrenadorPersonal, bool $jugador)
+    public function __construct(string $dni, string $nombre, string $apellidos, int $nivelJuego, ManoHabil $manoHabil, LadoPreferido $ladoPreferido, HorarioMensual $horarioMensualPreferido, int $indiceDeIrresponsabilidad, int $numFederacion, Fisioterapeuta $fisioAsociado, Entrenador $entrenadorPersonal, bool $socio)
     {
         parent::__construct($dni, $nombre, $apellidos);
         $this->nivelJuego = $nivelJuego;
@@ -27,7 +31,7 @@ class Jugador extends Persona
         $this->numFederacion = $numFederacion;
         $this->fisioAsociado = $fisioAsociado;
         $this->entrenadorPersonal = $entrenadorPersonal;
-        $this->jugador = $jugador;
+        $this->socio = $socio;
     }
 
     /**
@@ -177,17 +181,17 @@ class Jugador extends Persona
     /**
      * @return bool
      */
-    public function isJugador(): bool
+    public function isSocio(): bool
     {
-        return $this->jugador;
+        return $this->socio;
     }
 
     /**
      * @param bool $jugador
      */
-    public function setJugador(bool $jugador): void
+    public function setSocio(bool $socio): void
     {
-        $this->jugador = $jugador;
+        $this->socio = $socio;
     }
 
     /*public function generarHorarioPreferido(bool $renovacion):Jugador{

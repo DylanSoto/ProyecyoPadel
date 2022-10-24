@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Personas;
 
 class Empleado extends Persona
 {
-    private $direccion;
-    private $cuentaCorriente;
-    private $numSegSocial;
-    private $precioPorHora;
-    private $horario;
-    private $disponible;
-    private $salario;
+    private string $direccion;
+    private string $cuentaCorriente;
+    private string $numSegSocial;
+    private string $precioPorHora;
+    private string $horario;
+    private string $disponible;
+    private string $salario;
 
     public function __construct(string $nombre, string $apellidos, string $dni, string $direccion, string $cuentaCorriente, string $numSegSocial){
         parent::__construct($dni, $nombre, $apellidos);

@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Personas;
 
 class Persona
 {
-    private $dni;
-    private $nombre;
-    private $apellidos;
-    private $telefono;
+    private string $dni;
+    private string $nombre;
+    private string $apellidos;
+    private string $telefono;
 
     public function __construct(string $dni, string $nombre, string $apellidos){
         $this->dni = $dni;

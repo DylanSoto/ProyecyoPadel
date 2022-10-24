@@ -1,6 +1,9 @@
 <?php
 
-namespace App;
+namespace app\Servicios;
+
+use app\Horario\Intervalo;
+use app\Personas\Pareja;
 
 class Partida
 {

@@ -1,8 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Horario;
 
-use http\Encoding\Stream;
+use App\date;
+use App\hora;
+use App\Personas\Jugador;
 
 class HorarioDiario extends Intervalo
 {

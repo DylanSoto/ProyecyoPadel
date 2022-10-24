@@ -1,6 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Horario;
+
+use App\date;
+use App\hora;
+use App\Personas\Jugador;
 
 class HorarioMensual extends HorarioDiario
 {
