@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Horario;
+namespace App\Horarios;
 
 use App\Personas\Jugador;
 

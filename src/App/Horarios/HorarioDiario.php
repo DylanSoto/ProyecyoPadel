@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Horario;
+namespace App\Horarios;
 
-use App\date;
-use App\hora;
+
 use App\Personas\Jugador;
 
 class HorarioDiario extends Intervalo
 {
     private \DateTime $fecha;
-    private float $horaApertura;
-    private float $horaCierre;
+    private \DateTime $horaApertura;
+    private \DateTime $horaCierre;
     private int $duracionIntervalos;
     private array $intervalosDia;
 
-    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, $fecha, $horaApertura, $horaCierre, $duracionIntervalos, $intervalosDia)
+    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, \DateTime $fecha, \DateTime $horaApertura, \DateTime $horaCierre, int $duracionIntervalos, array $intervalosDia)
     {
-        parent::__construct($horaInicio, $horaFin, $disponibilidad, $socioReservado);
+        parent::__construct($horaInicio, $horaFin);
         $this->fecha = $fecha;
         $this->horaApertura = $horaApertura;
         $this->horaCierre = $horaCierre;
@@ -25,49 +24,49 @@ class HorarioDiario extends Intervalo
     }
 
     /**
-     * @return date
+     * @return \DateTime
      */
-    public function getFecha(): date
+    public function getFecha(): \DateTime
     {
         return $this->fecha;
     }
 
     /**
-     * @param date $fecha
+     * @param \DateTime $fecha
      */
-    public function setFecha(date $fecha): void
+    public function setFecha(\DateTime $fecha): void
     {
         $this->fecha = $fecha;
     }
 
     /**
-     * @return hora
+     * @return \DateTime
      */
-    public function getHoraApertura(): hora
+    public function getHoraApertura(): \DateTime
     {
         return $this->horaApertura;
     }
 
     /**
-     * @param hora $horaApertura
+     * @param \DateTime $horaApertura
      */
-    public function setHoraApertura(hora $horaApertura): void
+    public function setHoraApertura(\DateTime $horaApertura): void
     {
         $this->horaApertura = $horaApertura;
     }
 
     /**
-     * @return hora
+     * @return \DateTime
      */
-    public function getHoraCierre(): hora
+    public function getHoraCierre(): \DateTime
     {
         return $this->horaCierre;
     }
 
     /**
-     * @param hora $horaCierre
+     * @param \DateTime $horaCierre
      */
-    public function setHoraCierre(hora $horaCierre): void
+    public function setHoraCierre(\DateTime $horaCierre): void
     {
         $this->horaCierre = $horaCierre;
     }

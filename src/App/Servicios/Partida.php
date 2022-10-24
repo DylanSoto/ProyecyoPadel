@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Servicios;
+namespace App\Servicios;
 
-use app\Horario\Intervalo;
+use app\Horarios\Intervalo;
 use app\Personas\Pareja;
 
 class Partida

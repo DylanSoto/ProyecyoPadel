@@ -2,8 +2,8 @@
 
 namespace App\Servicios;
 
-use App\Horario\HorarioDiario;
-use App\Horario\HorarioMensual;
+use App\Horarios\HorarioDiario;
+use App\Horarios\HorarioMensual;
 use App\Personas\Jugador;
 use App\Servicios\Enum\TipoPista;
 
@@ -18,7 +18,7 @@ class Pista extends HorarioMensual
     private bool $disponible;
     private array $reservasPistasMensual;
 
-    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, date $fecha, hora $horaApertura, hora $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario, int $idPista, float $precio, bool $luz, float $precioLuz, TipoPista $tipoPista, bool $cubierta, bool $disponible, array $reservasPistasMensual)
+    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, \DateTime $fecha, \DateTime $horaApertura, \DateTime $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario, int $idPista, float $precio, bool $luz, float $precioLuz, TipoPista $tipoPista, bool $cubierta, bool $disponible, array $reservasPistasMensual)
     {
         parent::__construct($horaInicio, $horaFin, $disponibilidad, $socioReservado, $fecha, $horaApertura, $horaCierre, $duracionIntervalos, $intervalosDia, $mes, $anyo, $horarioDiario);
         $this->idPista = $idPista;

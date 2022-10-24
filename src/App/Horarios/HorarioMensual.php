@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Horario;
+namespace App\Horarios;
 
-use App\date;
-use App\hora;
 use App\Personas\Jugador;
 
 class HorarioMensual extends HorarioDiario
 {
-    private $mes;
-    private $anyo;
-    private $horariosDiarios;
+    private int $mes;
+    private int $anyo;
+    private HorarioDiario $horariosDiarios;
 
-    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, date $fecha, hora $horaApertura, hora $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario)
+    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, \DateTime $fecha, \DateTime $horaApertura, \DateTime $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario)
     {
         parent::__construct($horaInicio, $horaFin, $disponibilidad, $socioReservado, $fecha, $horaApertura, $horaCierre, $duracionIntervalos, $intervalosDia);
         $this->mes = $mes;

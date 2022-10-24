@@ -2,7 +2,7 @@
 
 namespace App\Personas;
 
-use App\Horario\HorarioMensual;
+use App\Horarios\HorarioMensual;
 use App\Personas\Enum\LadoPreferido;
 use App\Personas\Enum\ManoHabil;
 
