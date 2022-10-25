@@ -14,12 +14,13 @@ class Pareja extends Jugador
     private Jugador $jugador1;
     private Jugador $jugador2;
 
-    public function __construct(string $dni, string $nombre, string $apellidos, int $nivelJuego, ManoHabil $manoHabil, LadoPreferido $ladoPreferido, HorarioMensual $horarioMensualPreferido, int $indiceDeIrresponsabilidad, int $numFederacion, Fisioterapeuta $fisioAsociado, Entrenador $entrenadorPersonal, bool $jugador, $jugador1, $jugador2)
+
+    public function __construct(Jugador $jugador1, Jugador $jugador2)
     {
-        parent::__construct($dni, $nombre, $apellidos, $nivelJuego, $manoHabil, $ladoPreferido, $horarioMensualPreferido, $indiceDeIrresponsabilidad, $numFederacion, $fisioAsociado, $entrenadorPersonal, $jugador);
         $this->jugador1 = $jugador1;
         $this->jugador2 = $jugador2;
     }
+
 
     /**
      * @return Jugador
@@ -31,6 +32,7 @@ class Pareja extends Jugador
 
     /**
      * @param Jugador $jugador1
+     * @return Pareja
      */
     public function setJugador1(Jugador $jugador1): Pareja
     {
@@ -48,6 +50,7 @@ class Pareja extends Jugador
 
     /**
      * @param Jugador $jugador2
+     * @return Pareja
      */
     public function setJugador2(Jugador $jugador2): Pareja
     {

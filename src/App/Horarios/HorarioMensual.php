@@ -12,9 +12,9 @@ class HorarioMensual extends HorarioDiario
     private int $anyo;
     private HorarioDiario $horariosDiarios;
 
-    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, \DateTime $fecha, \DateTime $horaApertura, \DateTime $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario)
+    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, \DateTime $fecha, float $horaApertura, float $horaCierre, int $mes, int $anyo, HorarioDiario $horarioDiario)
     {
-        parent::__construct($horaInicio, $horaFin, $disponibilidad, $socioReservado, $fecha, $horaApertura, $horaCierre, $duracionIntervalos, $intervalosDia);
+        parent::__construct($horaInicio, $horaFin, $fecha, $horaApertura, $horaCierre);
         $this->mes = $mes;
         $this->anyo = $anyo;
         $this->horariosDiarios = $horarioDiario;

@@ -189,7 +189,7 @@ class Jugador extends Persona
     }
 
     /**
-     * @param bool $jugador
+     * @param bool $socio
      */
     public function setSocio(bool $socio): void
     {
