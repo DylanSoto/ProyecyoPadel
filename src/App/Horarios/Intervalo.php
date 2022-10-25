@@ -6,12 +6,12 @@ use App\Personas\Jugador;
 
 class Intervalo
 {
-    private \DateTime $horaInicio;
-    private \DateTime $horaFin;
+    private float $horaInicio;
+    private float $horaFin;
     private bool $disponibilidad;
     private Jugador $socioReservado;
 
-    public function __construct(\DateTime $horaInicio, \DateTime $horaFin)
+    public function __construct(float $horaInicio, float $horaFin)
     {
         $this->horaInicio = $horaInicio;
         $this->horaFin = $horaFin;

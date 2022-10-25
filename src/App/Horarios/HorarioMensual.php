@@ -2,6 +2,8 @@
 
 namespace App\Horarios;
 
+include __DIR__."../../autoload.php";
+
 use App\Personas\Jugador;
 
 class HorarioMensual extends HorarioDiario

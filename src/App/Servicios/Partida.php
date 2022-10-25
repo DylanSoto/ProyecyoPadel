@@ -5,6 +5,8 @@ namespace App\Servicios;
 use app\Horarios\Intervalo;
 use app\Personas\Pareja;
 
+include __DIR__."../../autoload.php";
+
 class Partida
 {
     private Pareja $pareja1;

@@ -6,6 +6,9 @@ use App\Horarios\HorarioMensual;
 use App\Personas\Enum\LadoPreferido;
 use App\Personas\Enum\ManoHabil;
 
+include __DIR__."../../autoload.php";
+
+
 class Pareja extends Jugador
 {
     private Jugador $jugador1;

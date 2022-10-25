@@ -2,6 +2,8 @@
 
 namespace App\Servicios;
 
+include __DIR__."../../autoload.php";
+
 use App\Horarios\HorarioDiario;
 use App\Horarios\HorarioMensual;
 use App\Personas\Jugador;

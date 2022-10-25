@@ -2,6 +2,9 @@
 
 namespace App\Personas;
 
+include __DIR__."../../autoload.php";
+
+
 class Empleado extends Persona
 {
     private string $direccion;

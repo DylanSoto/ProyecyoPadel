@@ -2,25 +2,24 @@
 
 namespace App\Horarios;
 
+include __DIR__."../../autoload.php";
 
 use App\Personas\Jugador;
 
 class HorarioDiario extends Intervalo
 {
     private \DateTime $fecha;
-    private \DateTime $horaApertura;
-    private \DateTime $horaCierre;
+    private float $horaApertura;
+    private float $horaCierre;
     private int $duracionIntervalos;
     private array $intervalosDia;
 
-    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, \DateTime $fecha, \DateTime $horaApertura, \DateTime $horaCierre, int $duracionIntervalos, array $intervalosDia)
+    public function __construct(float $horaInicio, float $horaFin, \DateTime $fecha, float $horaApertura, float $horaCierre)
     {
         parent::__construct($horaInicio, $horaFin);
         $this->fecha = $fecha;
         $this->horaApertura = $horaApertura;
         $this->horaCierre = $horaCierre;
-        $this->duracionIntervalos = $duracionIntervalos;
-        $this->intervalosDia = $intervalosDia;
     }
 
     /**
@@ -40,33 +39,33 @@ class HorarioDiario extends Intervalo
     }
 
     /**
-     * @return \DateTime
+     * @return float
      */
-    public function getHoraApertura(): \DateTime
+    public function getHoraApertura(): float
     {
         return $this->horaApertura;
     }
 
     /**
-     * @param \DateTime $horaApertura
+     * @param float $horaApertura
      */
-    public function setHoraApertura(\DateTime $horaApertura): void
+    public function setHoraApertura(float $horaApertura): void
     {
         $this->horaApertura = $horaApertura;
     }
 
     /**
-     * @return \DateTime
+     * @return float
      */
-    public function getHoraCierre(): \DateTime
+    public function getHoraCierre(): float
     {
         return $this->horaCierre;
     }
 
     /**
-     * @param \DateTime $horaCierre
+     * @param float $horaCierre
      */
-    public function setHoraCierre(\DateTime $horaCierre): void
+    public function setHoraCierre(float $horaCierre): void
     {
         $this->horaCierre = $horaCierre;
     }
@@ -103,11 +102,16 @@ class HorarioDiario extends Intervalo
         $this->intervalosDia = $intervalosDia;
     }
 
-    /*public function generarIntervalo()?HorarioDiario{
-        return ;
-    }*/
+    public function generarIntervalo():?HorarioDiario{
+        return new HorarioDiario($this->getHoraInicio(), $this->getHoraFin(), $this->getFecha(), $this->getHoraApertura(), $this->getHoraCierre());
+    }
 
-    /*public function imprimirHorarioDiario() :String{
-        return ;
-    }*/
+    public function imprimirHorarioDiario() : string{
+        $horario = "";
+        foreach ($this->getIntervalosDia() as $interv => $horas){
+            $horario.= $interv." ".$horas;
+        }
+        return $horario;
+    }
+
 }

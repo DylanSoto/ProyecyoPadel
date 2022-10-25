@@ -2,6 +2,9 @@
 
 namespace App\Personas;
 
+include __DIR__."../../autoload.php";
+
+
 class Entrenador extends Empleado
 {
     private int $nivelEntrenador;
