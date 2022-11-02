@@ -21,9 +21,9 @@ class Jugador extends Persona
     private Entrenador $entrenadorPersonal;
     private bool $socio;
 
-    public function __construct(string $dni, string $nombre, string $apellidos, int $nivelJuego, ManoHabil $manoHabil, LadoPreferido $ladoPreferido, HorarioMensual $horarioMensualPreferido, int $indiceDeIrresponsabilidad, int $numFederacion, Fisioterapeuta $fisioAsociado, Entrenador $entrenadorPersonal, bool $socio)
+    public function __construct(string $dni, string $nombre, string $apellidos, string $email, string $password, int $nivelJuego, ManoHabil $manoHabil, LadoPreferido $ladoPreferido, HorarioMensual $horarioMensualPreferido, int $indiceDeIrresponsabilidad, int $numFederacion, Fisioterapeuta $fisioAsociado, Entrenador $entrenadorPersonal, bool $socio, string $telefono=null)
     {
-        parent::__construct($dni, $nombre, $apellidos);
+        parent::__construct($dni, $nombre, $apellidos, $password, $email, $telefono);
         $this->nivelJuego = $nivelJuego;
         $this->manoHabil = $manoHabil;
         $this->ladoPreferido = $ladoPreferido;

@@ -1,8 +1,8 @@
 <?php
 
-spl_autoload_register(function ($class){
-    $ruta = __DIR__."/".$class;
-    $ruta.= ".php";
+spl_autoload_register(function ($class) {
+    $ruta = __DIR__ . "/" . $class;
+    $ruta .= ".php";
     $ruta = str_replace("\\", "/", $ruta);
 
     include_once($ruta);

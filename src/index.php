@@ -18,12 +18,6 @@
 //    include_once ("App/Horarios/Intervalo.php");
 
 
-    $persona = new Persona('12345678A', 'Javier', 'Gonzalez');
-
-
-    echo "<br>";
-    echo "<br>";
-
 /*    $jugador = new Jugador('45931348A',
         'Rocio',
         'Gutierrez',
@@ -51,3 +45,5 @@
 
     print_r($array);*/
 
+    $inter = new Intervalo(9.00, 21);
+    echo $inter;

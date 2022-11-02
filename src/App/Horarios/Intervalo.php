@@ -85,4 +85,13 @@ class Intervalo
     /*public function reservarHorario(Jugador) : Intervalo{
          return ;
     }*/
+
+    public static function calcularFinIntervalo(float $horaInicioIntervalo, int $duracionIntervalo):float {
+        return 0.0;
+    }
+
+    public function __toString(): string
+    {
+        return "Hora de inicio: ".$this->horaInicio."<br />Hora de fin: ".$this->horaFin."<br />";
+    }
 }

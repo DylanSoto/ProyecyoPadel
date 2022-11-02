@@ -15,8 +15,18 @@ class Empleado extends Persona
     private string $disponible;
     private string $salario;
 
-    public function __construct(string $nombre, string $apellidos, string $dni, string $direccion, string $cuentaCorriente, string $numSegSocial){
-        parent::__construct($dni, $nombre, $apellidos);
+    public function __construct(
+        string $nombre,
+        string $apellidos,
+        string $dni,
+        string $password,
+        string $email,
+        string $direccion,
+        string $cuentaCorriente,
+        string $numSegSocial,
+        string $telefono=null
+    ){
+        parent::__construct($dni, $nombre, $apellidos, $password, $email, $telefono);
         $this->direccion = $direccion;
         $this->cuentaCorriente = $cuentaCorriente;
         $this->numSegSocial = $numSegSocial;
@@ -58,7 +68,7 @@ class Empleado extends Persona
     }
 
 
-    public function getPrecioPorHora()
+    public function getPrecioPorHora():string
     {
         return $this->precioPorHora;
     }
@@ -70,7 +80,7 @@ class Empleado extends Persona
     }
 
 
-    public function getHorario()
+    public function getHorario():string
     {
         return $this->horario;
     }
@@ -92,7 +102,8 @@ class Empleado extends Persona
         $this->disponible = $disponible;
     }
 
-    public function setSalario(){
+    public function setSalario():string
+    {
         return $this->salario;
     }
 
