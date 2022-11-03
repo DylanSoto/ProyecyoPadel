@@ -23,6 +23,7 @@ abstract class PersonaDAO implements InterfazPersonas
     public function setConexion(PDO $conexion): PersonaDAO
     {
         $this->conexion = $conexion;
+        return $this;
     }
 
 

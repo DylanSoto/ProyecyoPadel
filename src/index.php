@@ -8,6 +8,7 @@
     use App\Personas\Enum\ManoHabil;
     use App\Personas\Jugador;
     use App\Personas\Persona;
+    use Modelo\PersonaDAOMySQL;
 
     include "autoload.php";
 
@@ -44,6 +45,9 @@
     echo "<br>";
 
     print_r($array);*/
-
-    $inter = new Intervalo(9.00, 21);
-    echo $inter;
+    $personaDao = new PersonaDAOMySQL();
+    if ( ($personaDao->getConexion())){
+        echo "Se ha conectado correctamente.";
+    } else {
+        echo "Fallo de conexión.";
+    }
