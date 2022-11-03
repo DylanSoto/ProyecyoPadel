@@ -20,5 +20,6 @@ class PersonaDAOMySQL extends PersonaDAO
         $sentencia->bindParam(1, $dni);
         $sentencia->execute();
         $fila = $sentencia->fetch();
+        return new Persona($fila['nombre'], $fila['apellidos'], $fila['email'], $fila['password']);
     }
 }
