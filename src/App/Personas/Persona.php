@@ -9,15 +9,15 @@ class Persona
     private string $apellidos;
     private string $telefono;
     private string $email;
-    private string $password;
+    private string $contrasenya;
 
-    
+
     public function __construct(
         string $dni,
         string $nombre,
         string $apellidos,
         string $email,
-        string $password,
+        string $contrasenya,
         string $telefono = ''
     ) {
         $this->dni = $dni;
@@ -25,7 +25,7 @@ class Persona
         $this->apellidos = $apellidos;
         $this->telefono = $telefono;
         $this->email = $email;
-        $this->password = $password;
+        $this->contrasenya = $contrasenya;
     }
 
 
@@ -35,12 +35,12 @@ class Persona
         return $this;
     }
 
-    public function getDNI() :string
+    public function getDNI(): string
     {
         return $this->dni;
     }
 
-    public function getNombre():string
+    public function getNombre(): string
     {
         return $this->nombre;
     }
@@ -51,7 +51,7 @@ class Persona
         return $this;
     }
 
-    public function getApellidos():string
+    public function getApellidos(): string
     {
         return $this->apellidos;
     }
@@ -62,7 +62,7 @@ class Persona
         return $this;
     }
 
-    public function getTelefono():string
+    public function getTelefono(): string
     {
         return $this->telefono;
     }
@@ -92,17 +92,17 @@ class Persona
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getContrasenya(): string
     {
-        return $this->password;
+        return $this->contrasenya;
     }
 
     /**
-     * @param string $password
+     * @param string $contrasenya
      */
-    public function setPassword(string $password): void
+    public function setContrasenya(string $contrasenya): void
     {
-        $this->password = $password;
+        $this->contrasenya = $contrasenya;
     }
 
 }

@@ -46,7 +46,8 @@
 
     print_r($array);*/
     $personaDao = new PersonaDAOMySQL();
-    $personaModificar = new Persona('44111222A', 'Javier', 'Azpeleta', 'javieraz@gmail.com',
+    $personaModificar = new Persona('44111222B', 'Javier', 'Azpeleta', 'javieraz@gmail.com',
     '1234', '987654123');
-    $resultado = $personaDao->modificarPersona($personaModificar);
+    //$resultado = $personaDao->insertarPersona($personaModificar);
+    $resultado = $personaDao->obtenerRangoPersonas(0,50);
     var_dump($resultado);
