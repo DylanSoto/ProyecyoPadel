@@ -18,7 +18,7 @@ class Persona
         string $apellidos,
         string $email,
         string $password,
-        string $telefono = null
+        string $telefono = ''
     ) {
         $this->dni = $dni;
         $this->nombre = $nombre;

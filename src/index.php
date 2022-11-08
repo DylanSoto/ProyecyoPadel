@@ -46,8 +46,7 @@
 
     print_r($array);*/
     $personaDao = new PersonaDAOMySQL();
-    if ( ($personaDao->getConexion())){
-        echo "Se ha conectado correctamente.";
-    } else {
-        echo "Fallo de conexión.";
-    }
+    $personaModificar = new Persona('44111222A', 'Javier', 'Azpeleta', 'javieraz@gmail.com',
+    '1234', '987654123');
+    $resultado = $personaDao->modificarPersona($personaModificar);
+    var_dump($resultado);
