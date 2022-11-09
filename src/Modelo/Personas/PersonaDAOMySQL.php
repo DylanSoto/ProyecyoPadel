@@ -1,12 +1,11 @@
 <?php
 
-namespace Modelo;
+namespace Modelo\Personas;
 
 use App\Personas\Persona;
-use \PDO;
 
 require_once __DIR__ . "./../datosConexionBD.php";
-require_once __DIR__. "./../datosConfiguracion.php";
+require_once __DIR__ . "./../datosConfiguracion.php";
 
 class PersonaDAOMySQL extends PersonaDAO
 {
@@ -76,18 +75,34 @@ class PersonaDAOMySQL extends PersonaDAO
         return $this->borrarPersonaPorDNI($persona->getDNI());
     }
 
+    public function borrarTodasLasPersonas(): bool
+    {
+        $sentencia = $this->getConexion()->query("TRUNCATE persona");
+        return $sentencia->execute();
+    }
+
     public function insertarPersona(Persona $persona): ?Persona
     {
-        $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) VALUES (:dni, :nombre, :apellidos, :telefono, :email, :pass)";
+        if ($persona->getTelefono() === '') {
+            $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) VALUES (:dni, :nombre, :apellidos, NULL, :email, :pass)";
 
-        $sentencia = $this->getConexion()->prepare($query);
-        $sentencia->bindValue("dni", $persona->getDNI());
-        $sentencia->bindValue("nombre", $persona->getNombre());
-        $sentencia->bindValue("apellidos", $persona->getApellidos());
-        $sentencia->bindValue("telefono", $persona->getTelefono());
-        $sentencia->bindValue("email", $persona->getEmail());
-        $sentencia->bindValue("pass", $persona->getContrasenya());
+            $sentencia = $this->getConexion()->prepare($query);
+            $sentencia->bindValue("dni", $persona->getDNI());
+            $sentencia->bindValue("nombre", $persona->getNombre());
+            $sentencia->bindValue("apellidos", $persona->getApellidos());
+            $sentencia->bindValue("email", $persona->getEmail());
+            $sentencia->bindValue("pass", $persona->getContrasenya());
+        } else {
+            $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) VALUES (:dni, :nombre, :apellidos, :telefono, :email, :pass)";
 
+            $sentencia = $this->getConexion()->prepare($query);
+            $sentencia->bindValue("dni", $persona->getDNI());
+            $sentencia->bindValue("nombre", $persona->getNombre());
+            $sentencia->bindValue("apellidos", $persona->getApellidos());
+            $sentencia->bindValue("telefono", $persona->getTelefono());
+            $sentencia->bindValue("email", $persona->getEmail());
+            $sentencia->bindValue("pass", $persona->getContrasenya());
+        }
         $resultado = $sentencia->execute();
 
         if ($resultado) {
@@ -109,7 +124,7 @@ class PersonaDAOMySQL extends PersonaDAO
         return $arrayObjetos;
     }
 
-    public function obtenerRangoPersonas(int $inicio, int $numeroResultados=NUMERODERESULTADOSPORPAGINA): array
+    public function obtenerRangoPersonas(int $inicio, int $numeroResultados = NUMERODERESULTADOSPORPAGINA): array
     {
         $resultado = $this->getConexion()->query("SELECT * FROM persona LIMIT $inicio, $numeroResultados");
         $resultado->execute();
@@ -123,9 +138,66 @@ class PersonaDAOMySQL extends PersonaDAO
 
     private function convertirArrayAPersona(array $datosPersona): ?Persona
     {
+        if ($datosPersona['TELEFONO']==NULL){
+            $datosPersona['TELEFONO']='';
+        }
         return new Persona(
             $datosPersona['DNI'], $datosPersona['NOMBRE'],
             $datosPersona['APELLIDOS'], $datosPersona['EMAIL'], $datosPersona['CONTRASENYA'], $datosPersona['TELEFONO']
         );
+    }
+
+    public function obtenerPersonasSinTelefono(): array
+    {
+        $query = "SELECT * FROM persona WHERE TELEFONO IS NULL";
+        $sentencia = $this->getConexion()->prepare($query);
+        $sentencia->execute();
+        $resultado = $sentencia;
+
+        $arrayPersonas = false;
+
+        if ($resultado) {
+            foreach ($resultado as $informacionPersona) {
+                $arrayPersonas[] = $this->convertirArrayAPersona($informacionPersona);
+            }
+        }
+
+        return $arrayPersonas;
+    }
+
+    public function obtenerPersonasPorNombre(string $nombre): array
+    {
+        $query = "SELECT * FROM persona WHERE NOMBRE=?";
+        $sentencia = $this->getConexion()->prepare($query);
+        $sentencia->execute();
+        $resultado = $sentencia;
+
+        $arrayPersonas = false;
+
+        if ($resultado) {
+            foreach ($resultado as $informacionPersona) {
+                $arrayPersonas[] = $this->convertirArrayAPersona($informacionPersona);
+            }
+        }
+
+        return $arrayPersonas;
+    }
+
+    public function obtenerPersonasPorApellido(string $apellido): array
+    {
+        $query = "SELECT * FROM persona WHERE APELLIDO=?";
+        $sentencia = $this->getConexion()->prepare($query);
+        $sentencia->execute();
+        $resultado = $sentencia;
+
+        $arrayPersonas = false;
+
+        if ($resultado) {
+            foreach ($resultado as $informacionPersona) {
+                $arrayPersonas[] = $this->convertirArrayAPersona($informacionPersona);
+            }
+        }
+
+        return $arrayPersonas;
     }
 }

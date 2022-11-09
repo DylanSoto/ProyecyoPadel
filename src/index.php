@@ -2,15 +2,9 @@
 
     namespace App\Personas;
 
-    use App\Horarios\HorarioDiario;
-    use App\Horarios\Intervalo;
-    use App\Personas\Enum\LadoPreferido;
-    use App\Personas\Enum\ManoHabil;
-    use App\Personas\Jugador;
-    use App\Personas\Persona;
-    use Modelo\PersonaDAOMySQL;
+    use Modelo\Personas\PersonaDAOMySQL;
 
-    include "autoload.php";
+    include "./autoload.php";
 
 //    include_once("App/Personas/Persona.php");
 //    include_once("App/Personas/Jugador.php");
@@ -46,8 +40,13 @@
 
     print_r($array);*/
     $personaDao = new PersonaDAOMySQL();
+
+    $personaDao->borrarTodasLasPersonas();
     $personaModificar = new Persona('44111222B', 'Javier', 'Azpeleta', 'javieraz@gmail.com',
     '1234', '987654123');
     //$resultado = $personaDao->insertarPersona($personaModificar);
-    $resultado = $personaDao->obtenerRangoPersonas(0,50);
+    //$resultado = $personaDao->obtenerRangoPersonas(0,50);
+/*    $resultado = $personaDao->obtenerPersonasPorNombre("Javier");
     var_dump($resultado);
+    $resultado = $personaDao->obtenerPersonasPorApellido("Azpeleta");
+    var_dump($resultado);*/

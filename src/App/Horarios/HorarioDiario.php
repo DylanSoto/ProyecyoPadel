@@ -17,16 +17,35 @@ class HorarioDiario extends Intervalo
     /**
      * @throws HoraNoValidaException
      */
-    public function __construct(float $horaInicio, float $horaFin, \DateTime $fecha, float $horaApertura, float $horaCierre, int $duracionIntervalos)
-    {
+    public function __construct(
+        float $horaInicio,
+        float $horaFin,
+        \DateTime $fecha,
+        float $horaApertura,
+        float $horaCierre,
+        int $duracionIntervalos
+    ) {
         parent::__construct($horaInicio, $horaFin);
         $this->fecha = $fecha;
-        if ($horaApertura<0 || $horaApertura>23) throw new HoraNoValidaException("Hora de Apertura no válida.");
-        if ($horaCierre<0 || $horaCierre>23) throw new HoraNoValidaException("Hora de Cierre no válida.");
-        if ($horaApertura>$horaCierre) throw new HoraNoValidaException("Hora de Apertura es mayor que la hora de Cierre.");
-        if (Intervalo::calcularFinIntervalo($horaApertura, $duracionIntervalos)>$horaCierre) throw new HoraNoValidaException("Imposible crear un solo intervalo")
-        if ($horaApertura-intval($horaApertura)>0.59) throw new HoraNoValidaException("Parte fraccionaria de la hora de apertura no válida");
-        if ($horaCierre-intval($horaCierre)>0.59) throw new HoraNoValidaException("Parte fraccionaria de la hora de cierre no válida");
+        if ($horaApertura < 0 || $horaApertura > 23) {
+            throw new HoraNoValidaException("Hora de Apertura no válida.");
+        }
+        if ($horaCierre < 0 || $horaCierre > 23) {
+            throw new HoraNoValidaException("Hora de Cierre no válida.");
+        }
+        if ($horaApertura > $horaCierre) {
+            throw new HoraNoValidaException("Hora de Apertura es mayor que la hora de Cierre.");
+        }
+        if (Intervalo::calcularFinIntervalo(
+                $horaApertura,
+                $duracionIntervalos
+            ) > $horaCierre) throw new HoraNoValidaException("Imposible crear un solo intervalo")
+        if ($horaApertura - intval($horaApertura) > 0.59) {
+            throw new HoraNoValidaException("Parte fraccionaria de la hora de apertura no válida");
+        }
+        if ($horaCierre - intval($horaCierre) > 0.59) {
+            throw new HoraNoValidaException("Parte fraccionaria de la hora de cierre no válida");
+        }
         $this->horaApertura = $horaApertura;
         $this->horaCierre = $horaCierre;
         $this->duracionIntervalos = $duracionIntervalos;
@@ -114,7 +133,7 @@ class HorarioDiario extends Intervalo
 
     public function generarIntervalo(): ?HorarioDiario
     {
-
+        return null;
     }
 
     public function imprimirHorarioDiario(): string
