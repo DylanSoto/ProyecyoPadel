@@ -11,6 +11,7 @@ interface InterfazPersonas
     public function borrarPersona(Persona $persona):?Persona;
     public function borrarPersonaPorDNI(string $dni):?Persona;
     public function leerPersona(string $dni):?Persona;
+    public function leerPersonaPorEmail(string $email):?Persona;
 
     public function leerTodasPersonas():array;
     public function obtenerPersonasSinTelefono():array;

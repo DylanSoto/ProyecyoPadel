@@ -57,6 +57,11 @@ abstract class PersonaDAO implements InterfazPersonas
         // TODO: Implement leerTodasPersonas() method.
     }
 
+    public function leerPersonaPorEmail(string $email): ?Persona
+    {
+        // TODO: Implement leerPersonaPorEmail() method.
+    }
+
     public function obtenerPersonasSinTelefono(): array
     {
         // TODO: Implement obtenerPersonasSinTelefono() method.

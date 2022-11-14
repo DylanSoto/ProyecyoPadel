@@ -4,8 +4,8 @@ namespace Modelo\Personas;
 
 use App\Personas\Persona;
 
-require_once __DIR__ . "./../datosConexionBD.php";
-require_once __DIR__ . "./../datosConfiguracion.php";
+require_once __DIR__ . "../../../datosConexionBD.php";
+require_once __DIR__ . "../../../datosConfiguracion.php";
 
 class PersonaDAOMySQL extends PersonaDAO
 {
@@ -199,5 +199,20 @@ class PersonaDAOMySQL extends PersonaDAO
         }
 
         return $arrayPersonas;
+    }
+
+    public function leerPersonaPorEmail(string $email): ?Persona
+    {
+        $query = "SELECT * FROM persona WHERE EMAIL=?";
+        $sentencia = $this->getConexion()->prepare($query);
+        $sentencia->bindParam(1,$email);
+
+        if($sentencia->execute()){
+            $resultado = $sentencia->fetch();
+            return $this->convertirArrayAPersona($resultado);
+        } else {
+            return null;
+        }
+
     }
 }

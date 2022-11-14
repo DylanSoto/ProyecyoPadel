@@ -3,6 +3,7 @@
     namespace App\Personas;
 
     use Modelo\Personas\PersonaDAOMySQL;
+    use Vistas\Plantilla\Plantilla;
 
     include "./autoload.php";
 
@@ -50,3 +51,8 @@
     var_dump($resultado);
     $resultado = $personaDao->obtenerPersonasPorApellido("Azpeleta");
     var_dump($resultado);*/
+
+    $plantilla = new Plantilla("Título");
+    echo $plantilla->getEncabezado();
+    echo $plantilla->generarBarraNavegacion();
+    echo $plantilla->generarFooter();

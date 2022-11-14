@@ -39,7 +39,7 @@ class HorarioDiario extends Intervalo
         if (Intervalo::calcularFinIntervalo(
                 $horaApertura,
                 $duracionIntervalos
-            ) > $horaCierre) throw new HoraNoValidaException("Imposible crear un solo intervalo")
+            ) > $horaCierre) throw new HoraNoValidaException("Imposible crear un solo intervalo");
         if ($horaApertura - intval($horaApertura) > 0.59) {
             throw new HoraNoValidaException("Parte fraccionaria de la hora de apertura no válida");
         }
