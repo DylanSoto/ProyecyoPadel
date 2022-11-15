@@ -132,27 +132,11 @@ class Plantilla
     }
 
     /**
-     * @param string $nav
-     */
-    public function setNav(string $nav): void
-    {
-        $this->nav = $nav;
-    }
-
-    /**
      * @return string
      */
     public function getFooter(): string
     {
         return $this->footer;
-    }
-
-    /**
-     * @param string $footer
-     */
-    public function setFooter(string $footer): void
-    {
-        $this->footer = $footer;
     }
 
 

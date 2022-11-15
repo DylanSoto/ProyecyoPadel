@@ -17,31 +17,12 @@ class PersonaControlador
      */
     public function __construct()
     {
-        $this->modelo = new PersonaDAOMySQL();
-        //$this->vista = new PersonaVista();
+        $this->modelo = new personaDAOMySQL();
+        //$this->vista = new personaVista();
     }
-
-    public function comprobarUsuarioWeb($email, $pass)
-    {
-        $persona = $this->modelo->leerPersonaPorEmail($email);
-        password_verify($pass, $persona->getContrasenya());
-    }
-
-    /**
-     * @return PersonaVista
-     */
-    public function getVista(): PersonaVista
-    {
-        return $this->vista;
-    }
-
-    /**
-     * @param PersonaVista $vista
-     */
-    public function setVista(PersonaVista $vista): PersonaControlador
-    {
-        $this->vista = $vista;
-        return $this;
+    public function comprobarUsuarioWeb($correoUsuario, $pass){
+        $persona=$this->modelo->leerPersonaPorEmail($correoUsuario);
+        password_verify($pass,$persona->getContrasenya());
     }
 
 

@@ -31,14 +31,16 @@ class PersonaVista
 
     /**
      * @param Plantilla $html
+     * @return PersonaVista
      */
-    public function setHtml(Plantilla $html): void
+    public function setHtml(Plantilla $html): PersonaVista
     {
         $this->html = $html;
+        return $this;
     }
 
-    public function  _toString():string
-    {
-        return $this->html->generarHead("Hola").$this->html->generarHeader();
+    public function __toString():string{
+        return $this->getHtml()->generarTodaLaPagina();
+
     }
 }

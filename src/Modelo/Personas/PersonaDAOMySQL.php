@@ -3,17 +3,26 @@
 namespace Modelo\Personas;
 
 use App\Personas\Persona;
+use PDO;
 
-require_once __DIR__ . "../../../datosConexionBD.php";
-require_once __DIR__ . "../../../datosConfiguracion.php";
+require_once __DIR__ . "/../../datosConexionBD.php";
+require_once __DIR__ . "/../../datosConfiguracion.php";
 
 class PersonaDAOMySQL extends PersonaDAO
 {
     public function __construct()
     {
-        $this->setConexion(new \PDO("mysql:host=" . HOSTBD . ";dbname=" . NOMBREBD, USUARIOBD, PASSBD));
+        $this->setConexion(
+            new PDO(
+                "mysql:host=" . HOSTBD .
+                ";dbname=" . NOMBREBD, USUARIOBD, PASSBD
+            )
+        );
 
-        $this->getConexion()->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $this->getConexion()->setAttribute(
+            \PDO::ATTR_ERRMODE,
+            \PDO::ERRMODE_EXCEPTION
+        );
     }
 
     public function leerPersona(string $dni): ?Persona
@@ -138,8 +147,8 @@ class PersonaDAOMySQL extends PersonaDAO
 
     private function convertirArrayAPersona(array $datosPersona): ?Persona
     {
-        if ($datosPersona['TELEFONO']==NULL){
-            $datosPersona['TELEFONO']='';
+        if ($datosPersona['TELEFONO'] == null) {
+            $datosPersona['TELEFONO'] = '';
         }
         return new Persona(
             $datosPersona['DNI'], $datosPersona['NOMBRE'],
@@ -205,14 +214,13 @@ class PersonaDAOMySQL extends PersonaDAO
     {
         $query = "SELECT * FROM persona WHERE EMAIL=?";
         $sentencia = $this->getConexion()->prepare($query);
-        $sentencia->bindParam(1,$email);
+        $sentencia->bindParam(1, $email);
 
-        if($sentencia->execute()){
+        if ($sentencia->execute()) {
             $resultado = $sentencia->fetch();
             return $this->convertirArrayAPersona($resultado);
         } else {
             return null;
         }
-
     }
 }
