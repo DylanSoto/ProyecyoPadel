@@ -3,7 +3,7 @@
 namespace Vistas\Personas;
 
 use App\Personas\Persona;
-use Vistas\Plantilla\Plantilla;
+use Vistas\Plantillas\Plantilla;
 
 class PersonaVista
 {
