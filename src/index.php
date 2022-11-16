@@ -101,10 +101,19 @@ echo "<br> Resultado de la búsqueda: ". array_search($intervalo2,$array);*/
 //    echo $vista;
 
 
-$plantilla = new Plantilla("Prueba");
-echo $plantilla->getEncabezado();
-echo $plantilla->getNav();
+//    $plantilla = new Plantilla("Prueba");
+//    echo $plantilla->getEncabezado();
+//    echo $plantilla->getNav();
 
-$controlador = new PersonaControlador();
+//$controlador = new PersonaControlador();
+//echo "hola";
 //$controlador->crear();
 //$controlador->comprobarUsuarioWeb();
+
+$router = new Router();
+$router->guardarRutas('/', function () {
+    echo "Estoy en el index.";
+});
+$router->guardarRutas('/persona', [PersonaControlador::class,"login"]);
+
+$router->resolverRuta($_SERVER['REQUEST_URI']);

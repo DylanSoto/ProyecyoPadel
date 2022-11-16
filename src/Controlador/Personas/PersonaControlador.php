@@ -41,4 +41,8 @@ class PersonaControlador
         $this->modelo->insertarPersona($personaMod);
     }
 
+    public function login(){
+        echo "Este es el login";
+    }
+
 }
