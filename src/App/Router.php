@@ -8,17 +8,21 @@ class Router
 {
     private array $rutas;
 
-    public function guardarRutas(string $ruta, callable|array $accion): self
+    public function guardarRutas(string $metodo, string $ruta, callable|array $accion): self
     {
-        $this->rutas[$ruta] = $accion;
+        $this->rutas[$metodo][$ruta] = $accion;
         return $this;
     }
 
-    public function resolverRuta($ruta)
+    public function resolverRuta($ruta, $metodo)
     {
         $rutaFiltrada = parse_url($ruta, PHP_URL_PATH);
+        $parametros = explode("/", $rutaFiltrada)[2];
+        $rutaFiltrada = '/'.explode("/", $rutaFiltrada)[1];
 
-        $accion = $this->rutas[$rutaFiltrada] ?? null;
+        echo $rutaFiltrada . " \nParametros: ".$parametros;
+        $metodo = strtolower($metodo);
+        $accion = $this->rutas[$metodo][$rutaFiltrada] ?? null;
 
         if (!$accion) {
             throw new RutaNoEncontradaException("Ruta no disponible");
@@ -31,7 +35,7 @@ class Router
                 if (class_exists($clase)) {
                     $clase = new $clase();
                     if (method_exists($clase, $metodo)) {
-                        return call_user_func_array([$clase, $metodo], []);
+                        return call_user_func_array([$clase, $metodo], [$parametros]);
                     }
                 }
             }

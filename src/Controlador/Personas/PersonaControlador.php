@@ -25,9 +25,9 @@ class PersonaControlador
     public function comprobarUsuarioWeb($correoUsuario, $pass)
     {
         $persona = $this->modelo->leerPersonaPorEmail($correoUsuario);
-        if(password_verify($pass, $persona->getContrasenya())){
+        if (password_verify($pass, $persona->getContrasenya())) {
             echo "ole";
-        }else{
+        } else {
             echo "que va que va";
         }
     }
@@ -41,8 +41,30 @@ class PersonaControlador
         $this->modelo->insertarPersona($personaMod);
     }
 
-    public function login(){
+    public function login()
+    {
         echo "Este es el login";
     }
 
+    public function mostrar($dni)
+    {
+        echo $dni;
+        //echo json_encode($this->modelo->leerTodasPersonas(), JSON_PRETTY_PRINT);
+
+    }
+
+    public function guardar()
+    {
+        echo "Estas intentando guardar";
+    }
+
+    public function borrar()
+    {
+        echo "Estas intentando borrar";
+    }
+
+    public function modificar()
+    {
+        echo "Estas intentando modificar";
+    }
 }

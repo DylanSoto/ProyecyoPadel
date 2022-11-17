@@ -110,10 +110,21 @@ echo "<br> Resultado de la búsqueda: ". array_search($intervalo2,$array);*/
 //$controlador->crear();
 //$controlador->comprobarUsuarioWeb();
 
+//echo "<pre>";
+//
+//var_dump($_SERVER);
+//echo "</pre>";
+
 $router = new Router();
-$router->guardarRutas('/', function () {
+$router->guardarRutas('get', '/', function () {
     echo "Estoy en el index.";
 });
-$router->guardarRutas('/persona', [PersonaControlador::class,"login"]);
 
-$router->resolverRuta($_SERVER['REQUEST_URI']);
+
+$router->guardarRutas('get','/personas', [PersonaControlador::class,"mostrar"]);
+$router->guardarRutas('post','/personas', [PersonaControlador::class,"guardar"]);
+$router->guardarRutas('delete','/personas', [PersonaControlador::class,"borrar"]);
+$router->guardarRutas('put','/personas', [PersonaControlador::class,"modificar"]);
+
+
+$router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
