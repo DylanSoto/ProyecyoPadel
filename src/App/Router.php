@@ -14,13 +14,20 @@ class Router
         return $this;
     }
 
+    /**
+     * @throws RutaNoEncontradaException
+     */
     public function resolverRuta($ruta, $metodo)
     {
         $rutaFiltrada = parse_url($ruta, PHP_URL_PATH);
-        $parametros = explode("/", $rutaFiltrada)[2];
-        $rutaFiltrada = '/'.explode("/", $rutaFiltrada)[1];
+        $arrayRuta = explode("/", $rutaFiltrada);
 
-        echo $rutaFiltrada . " \nParametros: ".$parametros;
+        $parametros = null;
+        if (count($arrayRuta)>2) {
+            $parametros = explode("/", $rutaFiltrada)[2];
+            $rutaFiltrada = '/' . explode("/", $rutaFiltrada)[1];
+        }
+
         $metodo = strtolower($metodo);
         $accion = $this->rutas[$metodo][$rutaFiltrada] ?? null;
 
