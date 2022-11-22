@@ -24,7 +24,7 @@ class PersonaControlador
         //$this->vista = new personaVista();
     }
 
-    public function comprobarUsuarioWeb($correoUsuario, $pass)
+    public function comprobarUsuarioWeb($correoUsuario, $pass): void
     {
         $persona = $this->modelo->leerPersonaPorEmail($correoUsuario);
         if (password_verify($pass, $persona->getContrasenya())) {
@@ -34,7 +34,7 @@ class PersonaControlador
         }
     }
 
-    public function crear()
+    public function crear(): void
     {
         $pasarCifrado = password_hash("1234", PASSWORD_DEFAULT);
         $personaMod = new  Persona(
@@ -48,7 +48,7 @@ class PersonaControlador
         echo "Este es el login";
     }
 
-    public function mostrar($dni)
+    public function mostrar($dni): void
     {
         if (isset($dni)) {
             try {
@@ -75,7 +75,7 @@ class PersonaControlador
     /**
      * @throws ParametrosDePersonaIncorrectosException
      */
-    public function guardar()
+    public function guardar(): void
     {
         $respuestaControlPersona = $this->comprobarDatosPersonaCorrectos('post');
         if (is_bool($respuestaControlPersona)) {
@@ -91,9 +91,9 @@ class PersonaControlador
             }
             $this->modelo->insertarPersona($persona);
         } else {
-            $mensajeError = "Se han producido errores en los siguientes campos<br />";
+            $mensajeError = "Se han producido errores en los siguientes campos<br>";
             foreach ($respuestaControlPersona as $error) {
-                $mensajeError .= "Error en el parámetro $error<br />";
+                $mensajeError .= "Error en el parámetro $error <br>";
             }
             throw new ParametrosDePersonaIncorrectosException($mensajeError);
         }
@@ -126,13 +126,59 @@ class PersonaControlador
         }
     }
 
-    public function borrar()
+    public function borrar($dni): void
     {
-        echo "Estas intentando borrar";
+        if (isset($dni)) {
+            try {
+                $this->modelo->borrarPersonaPorDNI($dni);
+            } catch (PersonaNoEncontradaException $e) {
+                header("Persona no encontrada", true, 500);
+            }
+        } else {
+            $this->modelo->borrarTodasLasPersonas();
+        }
     }
 
-    public function modificar()
+    public function modificar($dni): void
     {
-        echo "Estas intentando modificar";
+        parse_str(file_get_contents("php://input"), $put_vars);
+        if (isset($dni)) {
+            try {
+                $persona = $this->modelo->leerPersona($dni);
+            }catch (PersonaNoEncontradaException $e){
+                header("Persona no encontrada", true, 404);
+            }
+            if (isset($put_vars['dni'])){
+                if ($this->modelo->existeDNI($put_vars['dni'])){
+                    header("El DNI introducido ya existe.",true, 204);
+                    die;
+                }else{
+                    $persona->setDNI($put_vars['dni']);
+                }
+            }
+            if (isset($put_vars['nombre'])){
+                $persona->setNombre($put_vars['nombre']);
+            }
+            if (isset($put_vars['apellidos'])){
+                $persona->setApellidos($put_vars['apellidos']);
+            }
+            if (isset($put_vars['telefono'])){
+                $persona->setTelefono($put_vars['telefono']);
+            }
+            if (isset($put_vars['contrasenya'])){
+                $persona->setContrasenya($put_vars['contrasenya']);
+            }
+            if (isset($put_vars['email'])){
+                if ($this->modelo->existeEmail($put_vars['email'])){
+                    header("El email introducido ya existe.",true, 204);
+                    die;
+                }else{
+                    $persona->setEmail($put_vars['email']);
+                }
+            }
+            $this->modelo->modificarPersona($persona);
+        } else {
+
+        }
     }
 }
