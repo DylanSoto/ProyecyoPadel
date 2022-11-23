@@ -3,6 +3,7 @@
 namespace Modelo\Personas;
 
 use App\Personas\Persona;
+use Modelo\Excepciones\ActualizarPersonasException;
 use PDO;
 use Modelo\Excepciones\PersonaNoEncontradaException;
 
@@ -79,6 +80,50 @@ class PersonaDAOMySQL extends PersonaDAO
             return $persona;
         } else {
             return null;
+        }
+    }
+
+    /**
+     * @throws ActualizarPersonasException
+     */
+    public function modificarTodasLasPersonas(array $elementosAModificar)
+    {
+        $query = "UPDATE persona SET ";
+
+        if (isset($elementosAModificar['nombre'])) {
+            $query .= "NOMBRE=:nombre,";
+        }
+        if (isset($elementosAModificar['apellidos'])) {
+            $query .= "APELLIDOS=:apellidos,";
+        }
+        if (isset($elementosAModificar['telefono'])) {
+            $query .= "TELEFONO=:telefono,";
+        }
+        if (isset($elementosAModificar['contrasenya'])) {
+            $query .= "CONTRASENYA=:contrasenya,";
+        }
+
+        $query = substr($query, 0, -1);
+        $sentencia = $this->getConexion()->prepare($query);
+
+        if (isset($elementosAModificar['nombre'])) {
+            $sentencia->bindParam("nombre", $elementosAModificar['nombre']);
+        }
+        if (isset($elementosAModificar['apellidos'])) {
+            $sentencia->bindParam("apellidos", $elementosAModificar['apellidos']);
+        }
+        if (isset($elementosAModificar['telefono'])) {
+            $sentencia->bindParam("telefono", $elementosAModificar['telefono']);
+        }
+        if (isset($elementosAModificar['contrasenya'])) {
+            $passCifrada = password_hash($elementosAModificar['contrasenya'],PASSWORD_DEFAULT);
+            $sentencia->bindParam("contrasenya", $passCifrada);
+        }
+
+        try {
+            $sentencia->execute();
+        } catch (\PDOException $e) {
+            throw new ActualizarPersonasException("No se han podido actualizar las personas");
         }
     }
 

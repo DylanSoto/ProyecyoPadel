@@ -3,6 +3,7 @@
 namespace Controlador\Personas;
 
 use App\Personas\Persona;
+use Modelo\Excepciones\ActualizarPersonasException;
 use Modelo\Excepciones\ParametrosDePersonaIncorrectosException;
 use Modelo\Excepciones\PersonaNoEncontradaException;
 use Modelo\Personas\PersonaDAO;
@@ -84,7 +85,7 @@ class PersonaControlador
                 $_POST['nombre'],
                 $_POST['apellidos'],
                 $_POST['email'],
-                $_POST['contrasenya']
+                password_hash($_POST['contrasenya'],PASSWORD_DEFAULT)
             );
             if (isset($_POST['telefono'])) {
                 $persona->setTelefono($_POST['telefono']);
@@ -145,40 +146,44 @@ class PersonaControlador
         if (isset($dni)) {
             try {
                 $persona = $this->modelo->leerPersona($dni);
-            }catch (PersonaNoEncontradaException $e){
+            } catch (PersonaNoEncontradaException $e) {
                 header("Persona no encontrada", true, 404);
             }
-            if (isset($put_vars['dni'])){
-                if ($this->modelo->existeDNI($put_vars['dni'])){
-                    header("El DNI introducido ya existe.",true, 204);
+            if (isset($put_vars['dni'])) {
+                if ($this->modelo->existeDNI($put_vars['dni'])) {
+                    header("El DNI introducido ya existe.", true, 204);
                     die;
-                }else{
+                } else {
                     $persona->setDNI($put_vars['dni']);
                 }
             }
-            if (isset($put_vars['nombre'])){
+            if (isset($put_vars['nombre'])) {
                 $persona->setNombre($put_vars['nombre']);
             }
-            if (isset($put_vars['apellidos'])){
+            if (isset($put_vars['apellidos'])) {
                 $persona->setApellidos($put_vars['apellidos']);
             }
-            if (isset($put_vars['telefono'])){
+            if (isset($put_vars['telefono'])) {
                 $persona->setTelefono($put_vars['telefono']);
             }
-            if (isset($put_vars['contrasenya'])){
-                $persona->setContrasenya($put_vars['contrasenya']);
+            if (isset($put_vars['contrasenya'])) {
+                $persona->setContrasenya(password_hash($put_vars['contrasenya']),PASSWORD_DEFAULT);
             }
-            if (isset($put_vars['email'])){
-                if ($this->modelo->existeEmail($put_vars['email'])){
-                    header("El email introducido ya existe.",true, 204);
+            if (isset($put_vars['email'])) {
+                if ($this->modelo->existeEmail($put_vars['email'])) {
+                    header("El email introducido ya existe.", true, 204);
                     die;
-                }else{
+                } else {
                     $persona->setEmail($put_vars['email']);
                 }
             }
             $this->modelo->modificarPersona($persona);
         } else {
-
+            try {
+                $this->modelo->modificarTodasLasPersonas($put_vars);
+            } catch (ActualizarPersonasException $e) {
+                header($e->getMessage(), true, 204);
+            }
         }
     }
 }

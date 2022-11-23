@@ -121,10 +121,10 @@ $router->guardarRutas('get', '/', function () {
 });
 
 
-$router->guardarRutas('get','/personas', [PersonaControlador::class,"mostrar"]);
-$router->guardarRutas('post','/personas', [PersonaControlador::class,"guardar"]);
-$router->guardarRutas('delete','/personas', [PersonaControlador::class,"borrar"]);
-$router->guardarRutas('put','/personas', [PersonaControlador::class,"modificar"]);
+$router->guardarRutas('get','/api/personas', [PersonaControlador::class,"mostrar"]);
+$router->guardarRutas('post','/api/personas', [PersonaControlador::class,"guardar"]);
+$router->guardarRutas('delete','/api/personas', [PersonaControlador::class,"borrar"]);
+$router->guardarRutas('put','/api/personas', [PersonaControlador::class,"modificar"]);
 
 
 $router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
