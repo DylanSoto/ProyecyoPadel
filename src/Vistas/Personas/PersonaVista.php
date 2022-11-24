@@ -11,7 +11,7 @@ class PersonaVista
 
     public function __construct(string $titulo)
     {
-        $html=new Plantilla("Datos Personales");
+        $this->html = new Plantilla("Datos Personales");
 
     }
 

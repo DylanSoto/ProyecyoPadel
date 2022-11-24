@@ -116,7 +116,7 @@ class PersonaDAOMySQL extends PersonaDAO
             $sentencia->bindParam("telefono", $elementosAModificar['telefono']);
         }
         if (isset($elementosAModificar['contrasenya'])) {
-            $passCifrada = password_hash($elementosAModificar['contrasenya'],PASSWORD_DEFAULT);
+            $passCifrada = password_hash($elementosAModificar['contrasenya'], PASSWORD_DEFAULT);
             $sentencia->bindParam("contrasenya", $passCifrada);
         }
 
@@ -167,7 +167,8 @@ class PersonaDAOMySQL extends PersonaDAO
     public function insertarPersona(Persona $persona): ?Persona
     {
         if ($persona->getTelefono() === '') {
-            $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) VALUES (:dni, :nombre, :apellidos, NULL, :email, :pass)";
+            $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) 
+                        VALUES (:dni, :nombre, :apellidos, NULL, :email, :pass)";
 
             $sentencia = $this->getConexion()->prepare($query);
             $sentencia->bindValue("dni", $persona->getDNI());
@@ -176,7 +177,8 @@ class PersonaDAOMySQL extends PersonaDAO
             $sentencia->bindValue("email", $persona->getEmail());
             $sentencia->bindValue("pass", $persona->getContrasenya());
         } else {
-            $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) VALUES (:dni, :nombre, :apellidos, :telefono, :email, :pass)";
+            $query = "INSERT INTO persona (DNI, NOMBRE, APELLIDOS, TELEFONO, EMAIL, CONTRASENYA) 
+                        VALUES (:dni, :nombre, :apellidos, :telefono, :email, :pass)";
 
             $sentencia = $this->getConexion()->prepare($query);
             $sentencia->bindValue("dni", $persona->getDNI());

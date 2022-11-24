@@ -5,10 +5,7 @@
 
 namespace App;
 
-use App\Personas\Persona;
 use Controlador\Personas\PersonaControlador;
-use Modelo\Personas\PersonaDAOMySQL;
-use Vistas\Personas\PersonaVista;
 use Vistas\Plantillas\Plantilla;
 
 include __DIR__ . "/autoload.php";
@@ -101,10 +98,6 @@ echo "<br> Resultado de la búsqueda: ". array_search($intervalo2,$array);*/
 //    echo $vista;
 
 
-//    $plantilla = new Plantilla("Prueba");
-//    echo $plantilla->getEncabezado();
-//    echo $plantilla->getNav();
-
 //$controlador = new PersonaControlador();
 //echo "hola";
 //$controlador->crear();
@@ -119,6 +112,8 @@ $router = new Router();
 $router->guardarRutas('get', '/', function () {
     echo "Estoy en el index.";
 });
+
+$router->guardarRutas('get','/', [PersonaControlador::class,"index"]);
 
 
 $router->guardarRutas('get','/api/personas', [PersonaControlador::class,"mostrar"]);

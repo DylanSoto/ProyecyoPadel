@@ -15,10 +15,6 @@ class PersonaControlador
     private PersonaDAO $modelo;
     private PersonaVista $vista;
 
-    /**
-     * @param PersonaDAO $modelo
-     * @param PersonaVista $vista
-     */
     public function __construct()
     {
         $this->modelo = new personaDAOMySQL();
@@ -44,9 +40,15 @@ class PersonaControlador
         $this->modelo->insertarPersona($personaMod);
     }
 
-    public function login()
+    public function login(): void
     {
         echo "Este es el login";
+    }
+
+    public function index(): void
+    {
+        $vista = new PersonaVista("Indíce");
+        echo $vista->getHtml()->generarTodaLaPagina();
     }
 
     public function mostrar($dni): void
@@ -56,7 +58,7 @@ class PersonaControlador
                 $this->mostrarDatosPersonasAPI($dni);
             } catch (PersonaNoEncontradaException $e) {
                 //TODO implement respuesta http
-                echo "No existe la persona buscada", $e->getMessage();
+                echo "No existe la persona buscada". $e->getMessage();
             }
         } else {
             $this->mostrarTodasLasPersonasAPI();
@@ -68,6 +70,9 @@ class PersonaControlador
         echo json_encode($this->modelo->leerTodasPersonas(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @throws PersonaNoEncontradaException
+     */
     private function mostrarDatosPersonasAPI($dni): void
     {
         echo json_encode($this->modelo->leerPersona($dni), JSON_PRETTY_PRINT);
@@ -103,7 +108,7 @@ class PersonaControlador
     private function comprobarDatosPersonaCorrectos($metodo): array|bool
     {
         $arrayFallos = [];
-        if ($metodo == 'post') {
+        if ($metodo === 'post') {
             if (!isset($_POST['dni'])) {
                 $arrayFallos[] = 'dni';
             }
@@ -148,6 +153,7 @@ class PersonaControlador
                 $persona = $this->modelo->leerPersona($dni);
             } catch (PersonaNoEncontradaException $e) {
                 header("Persona no encontrada", true, 404);
+                die;
             }
             if (isset($put_vars['dni'])) {
                 if ($this->modelo->existeDNI($put_vars['dni'])) {
@@ -167,7 +173,7 @@ class PersonaControlador
                 $persona->setTelefono($put_vars['telefono']);
             }
             if (isset($put_vars['contrasenya'])) {
-                $persona->setContrasenya(password_hash($put_vars['contrasenya']),PASSWORD_DEFAULT);
+                $persona->setContrasenya(password_hash($put_vars['contrasenya'],PASSWORD_DEFAULT));
             }
             if (isset($put_vars['email'])) {
                 if ($this->modelo->existeEmail($put_vars['email'])) {

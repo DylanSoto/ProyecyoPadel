@@ -21,10 +21,10 @@ class Plantilla
         $this->generarFooter();
     }
 
-    public function generarEncabezado($titulo)
+    public function generarEncabezado($titulo): void
     {
         $this->encabezado="<!DOCTYPE html>
-            <html xmlns='http://www.w3.org/1999/xhtml'>
+            <html xmlns='http://www.w3.org/1999/xhtml' lang='es'>
             <head>
                 <meta charset='utf-8' />
                 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />

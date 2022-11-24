@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Horarios;
+include __DIR__."/../../autoload.php";
 
 use App\Personas\Jugador;
 
@@ -11,43 +12,51 @@ class Intervalo
     private bool $disponibilidad;
     private Jugador $socioReservado;
 
+    /**
+     * @param $horaInicio
+     * @param $horaFin
+     */
     public function __construct(float $horaInicio, float $horaFin)
     {
         $this->horaInicio = $horaInicio;
         $this->horaFin = $horaFin;
-        $this->disponibilidad = true;
+        $this->disponibilidad=true;
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getHoraInicio(): \DateTime
+    public function getHoraInicio():float
     {
         return $this->horaInicio;
     }
 
     /**
-     * @param int $horaInicio
+     * @param mixed $horaInicio
+     * @return Intervalo
      */
-    public function setHoraInicio(\DateTime $horaInicio): void
+    public function setHoraInicio(float $horaInicio):Intervalo
     {
         $this->horaInicio = $horaInicio;
+        return $this;
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getHoraFin(): \DateTime
+    public function getHoraFin():float
     {
         return $this->horaFin;
     }
 
     /**
-     * @param int $horaFin
+     * @param mixed $horaFin
+     * @return Intervalo
      */
-    public function setHoraFin(\DateTime $horaFin): void
+    public function setHoraFin(float $horaFin):Intervalo
     {
         $this->horaFin = $horaFin;
+        return $this;
     }
 
     /**
@@ -60,38 +69,35 @@ class Intervalo
 
     /**
      * @param bool $disponibilidad
+     * @return Intervalo
      */
-    public function setDisponibilidad(bool $disponibilidad): void
+    public function setDisponible(bool $disponibilidad): Intervalo
     {
         $this->disponibilidad = $disponibilidad;
+        return $this;
     }
 
     /**
-     * @return Jugador
+     * @return mixed
      */
-    public function getSocioReservado(): Jugador
+    public function getSocioReservado():Jugador
     {
         return $this->socioReservado;
     }
 
-    /**
-     * @param Jugador $socioReservado
-     */
-    public function setSocioReservado(Jugador $socioReservado): void
+    public function reservarHorario(Jugador $jugador):Intervalo
     {
-        $this->socioReservado = $socioReservado;
+        $this->socioReservado=$jugador;
+        return $this;
     }
 
-    /*public function reservarHorario(Jugador) : Intervalo{
-         return ;
-    }*/
-
-    public static function calcularFinIntervalo(float $horaInicioIntervalo, int $duracionIntervalo):float {
+    public static function calcularFinIntervalo(float $horaIncioIntervalo, int $duracionIntervalo):float
+    {
         return 0.0;
     }
 
-    public function __toString(): string
-    {
-        return "Hora de inicio: ".$this->horaInicio."<br />Hora de fin: ".$this->horaFin."<br />";
+    public function __toString():string{
+
+        return "salida";
     }
 }
