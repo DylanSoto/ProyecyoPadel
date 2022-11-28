@@ -7,6 +7,8 @@ class Plantilla
     private string $encabezado;
     private string $nav;
     private string $footer;
+    private string $encabezadoPrincipal;
+    private string $descripcionPrincipal;
 
     public function __construct(
         $titulo,
@@ -48,7 +50,8 @@ class Plantilla
             <body >";
     }
 
-    public function generarBarraNavegacion(array $opcionesMenu,string $dirLogo="Vistas/Plantillas/assets/img/logo180-50.png"){
+    public function generarBarraNavegacion(array $opcionesMenu,string $dirLogo="Vistas/Plantillas/assets/img/logo180-50.png"): void
+    {
         $this->nav="
             <div class='navbar navbar-inverse navbar-fixed-top move-me' id='menu'>
             <div class='container'>
@@ -78,14 +81,15 @@ class Plantilla
 
     }
 
-    public function generarFooter(){
+    public function generarFooter(): void
+    {
         $this->footer="    <div class='myfooter' >
                      &copy;";
 
         $fecha = new \DateTime();
         $anyo = $fecha->format('Y');
         $this->footer.=$anyo.
-         "cobrapadel . es | by: <a href = 'http://binarytheme.com' style = 'color:#fff;' target = '_blank' > www . binarytheme . com</a >
+            "cobrapadel . es | by: <a href = 'http://binarytheme.com' style = 'color:#fff;' target = '_blank' > www . binarytheme . com</a >
     </div>
     <!--FOOTER SECTION END-->
     <!--  Jquery Core Script -->
