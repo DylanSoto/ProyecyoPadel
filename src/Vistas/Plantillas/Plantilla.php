@@ -17,6 +17,7 @@ class Plantilla
         ]
     ) {
         $this->generarEncabezado($titulo);
+        $this->generarPresentacionWeb();
         $this->generarBarraNavegacion($opcionesMenu);
         $this->generarFooter();
     }

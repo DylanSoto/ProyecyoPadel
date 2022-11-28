@@ -21,11 +21,22 @@ class PersonaControlador
         //$this->vista = new personaVista();
     }
 
+    public function recibirDatosLogin(): void
+    {
+        if (isset($_POST['email']) && isset($_POST['contrasenya'])) {
+            $this->comprobarUsuarioWeb($_POST['email'], $_POST['contrasenya']);
+        } else {
+            echo "Parámetros de login incorrectos.";
+        }
+    }
+
     public function comprobarUsuarioWeb($correoUsuario, $pass): void
     {
         $persona = $this->modelo->leerPersonaPorEmail($correoUsuario);
         if (password_verify($pass, $persona->getContrasenya())) {
-            echo "ole";
+            session_start();
+            $_SESSION['logeado'] = true;
+            $_SESSION['usuario'] = $this->modelo->leerPersonaPorEmail($correoUsuario)->getNombre();
         } else {
             echo "que va que va";
         }
@@ -58,7 +69,7 @@ class PersonaControlador
                 $this->mostrarDatosPersonasAPI($dni);
             } catch (PersonaNoEncontradaException $e) {
                 //TODO implement respuesta http
-                echo "No existe la persona buscada". $e->getMessage();
+                echo "No existe la persona buscada" . $e->getMessage();
             }
         } else {
             $this->mostrarTodasLasPersonasAPI();
@@ -90,7 +101,7 @@ class PersonaControlador
                 $_POST['nombre'],
                 $_POST['apellidos'],
                 $_POST['email'],
-                password_hash($_POST['contrasenya'],PASSWORD_DEFAULT)
+                password_hash($_POST['contrasenya'], PASSWORD_DEFAULT)
             );
             if (isset($_POST['telefono'])) {
                 $persona->setTelefono($_POST['telefono']);
@@ -173,7 +184,7 @@ class PersonaControlador
                 $persona->setTelefono($put_vars['telefono']);
             }
             if (isset($put_vars['contrasenya'])) {
-                $persona->setContrasenya(password_hash($put_vars['contrasenya'],PASSWORD_DEFAULT));
+                $persona->setContrasenya(password_hash($put_vars['contrasenya'], PASSWORD_DEFAULT));
             }
             if (isset($put_vars['email'])) {
                 if ($this->modelo->existeEmail($put_vars['email'])) {
