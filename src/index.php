@@ -21,8 +21,9 @@ include __DIR__ . "/vendor/autoload.php";
 
 $mongodb = new PersonaDAOMongoDB();
 
-$persona = new Persona('45931348A', "Hola", "Como Tamos", "comotamos@gmail.com", "12354", "956789425");
+$persona = new Persona('45931347A', "Adios", "Como Tamos", "comotamos3@gmail.com", "12354", "956789425");
 $mongodb->insertarPersona($persona);
+//$mongodb->modificarPersona($persona);
 var_dump($mongodb->leerTodasPersonas());
 
 
