@@ -114,7 +114,7 @@ class Plantilla
 
 
 
-    public function __construct(string $titulo="Sin titulo",string $dirLogotipo='/Vistas/Plantillas/assets/img/logo.png' ,
+    public function __construct(string $titulo="Sin titulo",string $dirLogotipo='/App/Vistas/Plantillas/assets/img/logo180-50.png' ,
         array $menu=['Inicio'=>'/','Log-in'=>'login','Registro'=>'#'],
         $encabezadoPrincipal="Sin encabezado",$descripcionPrincipal="Sin descripción"){
         $this->generarEncabezadoHTML($titulo);
@@ -136,15 +136,15 @@ class Plantilla
                     <meta name='author' content='' />
                     <title>$titulo</title>
                     <!-- BOOTSTRAP CORE STYLE CSS -->
-                    <link href='/Vistas/Plantillas/assets/css/bootstrap.css' rel='stylesheet' />
+                    <link href='/App/Vistas/Plantillas/assets/css/bootstrap.css' rel='stylesheet' />
                     <!-- FONT AWESOME CSS -->
-                    <link href='/Vista/Plantillas/assets/css/font-awesome.min.css' rel='stylesheet' />
+                    <link href='/App/Vistas/Plantillas/assets/css/font-awesome.min.css' rel='stylesheet' />
                      <!-- STYLE SWITCHER  CSS -->
-                    <link href='/Vistas/Plantillas/assets/css/styleSwitcher.css' rel='stylesheet' />
+                    <link href='/App/Vistas/Plantillas/assets/css/styleSwitcher.css' rel='stylesheet' />
                     <!-- CUSTOM STYLE CSS -->
-                    <link href='/Vistas/Plantillas/assets/css/style.css' rel='stylesheet' />  
+                    <link href='/App/Vistas/Plantillas/assets/css/style.css' rel='stylesheet' />  
                      <!--GREEN STYLE VERSION IS BY DEFAULT, USE ANY ONE STYLESHEET FROM TWO STYLESHEETS (green or red) HERE-->
-                     <link href='/Vistas/Plantillas/assets/css/themes/green.css' id='mainCSS' rel='stylesheet' />   
+                     <link href='/App/Vistas/Plantillas/assets/css/themes/green.css' id='mainCSS' rel='stylesheet' />   
                   <!-- Google	Fonts -->
                     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
                 </head>
@@ -316,19 +316,19 @@ class Plantilla
                     </div>
                     <div class='row ' >
                         <div class='col-lg-4 col-md-4 col-sm-4' data-scroll-reveal='enter from the left after 0.2s' >
-                            <img src='./assets/img/1.jpg' class='img-rounded img-responsive' alt=''  />
+                            <img src='/App/Vistas/Plantillas/assets/img/1.jpg' class='img-rounded img-responsive' alt=''  />
                             <h4 ><strong> Carla Garcia </strong></h4>
                             <i>Directora de Salud</i>
                             <p>Especialista en preparación deportiva. Licenciada en Fisioterapia por la Universidad de Deusto</p>
                         </div>
                         <div class='col-lg-4 col-md-4 col-sm-4' data-scroll-reveal='enter from the bottom after 0.4s' >
-                            <img src='./assets/img/2.jpg' class='img-rounded img-responsive' alt=''  />
+                            <img src='/App/Vistas/Plantillas/assets/img/2.jpg' class='img-rounded img-responsive' alt=''  />
                             <h4 ><strong>Gema Hernandez</strong></h4>
                             <i>Vicedirectora de Operaciones</i>
                             <p>Mandamás de la empresa. Estamos aquí para que tu progresión no pare</p>
                         </div>
                         <div class='col-lg-4 col-md-4 col-sm-4' data-scroll-reveal='enter from the right after 0.2s' >
-                            <img src='./assets/img/3.jpg' class='img-rounded img-responsive' alt=''  />
+                            <img src='/App/Vistas/Plantillas/assets/img/3.jpg' class='img-rounded img-responsive' alt=''  />
                             <h4 ><strong> Carlos Gómez </strong></h4>
                             <i>Director de Desarrollo</i>
                             <p>Padelista profesional desde los 18 años. Licenciado en INEF por la Universidad de Alicante</p>
@@ -361,8 +361,7 @@ class Plantilla
         $this->bloqueDosColumnas.=$celdaIzquierda;
         $this->bloqueDosColumnas.="
                     </div>
-                    <div class='col-lg-6 col-md-6 col-sm-6' data-scroll-reveal=use App\Exceptions\RutaNoEncontradaException;
-'enter from the left after 0.4s'>";
+                    <div class='col-lg-6 col-md-6 col-sm-6' data-scroll-reveal='enter from the left after 0.4s'>";
         $this->bloqueDosColumnas.=$celdaDerecha;
         $this->bloqueDosColumnas.="</div>
                 </div>
@@ -405,17 +404,17 @@ class Plantilla
           </div>
         
             <!--  Jquery Core Script -->
-            <script src='./assets/js/jquery-1.10.2.js'></script>
+            <script src='/App/Vistas/Plantillas/assets/js/jquery-1.10.2.js'></script>
             <!--  Core Bootstrap Script -->
-            <script src='./assets/js/bootstrap.js'></script>
+            <script src='/App/Vistas/Plantillas/assets/js/bootstrap.js'></script>
              <!--  Scrolling Reveal Script -->
-            <script src='./assets/js/scrollReveal.js'></script>
+            <script src='/App/Vistas/Plantillas/assets/js/scrollReveal.js'></script>
             <!--  Scroll Scripts --> 
-            <script src='./assets/js/jquery.easing.min.js'></script>
+            <script src='/App/Vistas/Plantillas/assets/js/jquery.easing.min.js'></script>
              <!--  Style Switcher Scripts -->
-            <script src='./assets/js/styleSwitcher.js'></script>
+            <script src='/App/Vistas/Plantillas/assets/js/styleSwitcher.js'></script>
                 <!--  Custom Scripts -->    
-            <script src='./assets/js/custom.js'></script>
+            <script src='/App/Vistas/Plantillas/assets/js/custom.js'></script>
             </body>
             </html>";
 

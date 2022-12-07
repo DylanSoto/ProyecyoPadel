@@ -6,10 +6,13 @@
 namespace App;
 
 use App\Controlador\Personas\PersonaControlador;
+use App\Controlador\Servicios\PistaControlador;
 use App\Modelo\Personas\PersonaDAOMongoDB;
-use App\Personas\Persona;
 use App\Vistas\LandingVista;
 use App\Vistas\LoginVista;
+use App\Personas\Persona;
+
+session_start();
 
 include __DIR__ . "/vendor/autoload.php";
 
@@ -19,12 +22,12 @@ include __DIR__ . "/vendor/autoload.php";
 //echo "</pre>";
 
 
-$mongodb = new PersonaDAOMongoDB();
-
-$persona = new Persona('45931347A', "Adios", "Como Tamos", "comotamos3@gmail.com", "12354", "956789425");
-$mongodb->insertarPersona($persona);
-//$mongodb->modificarPersona($persona);
-var_dump($mongodb->leerTodasPersonas());
+//$mongodb = new PersonaDAOMongoDB();
+//
+//$persona = new Persona('45931347A', "Adios", "Como Tamos", "comotamos3@gmail.com", "12354", "956789425");
+//$mongodb->insertarPersona($persona);
+////$mongodb->modificarPersona($persona);
+//var_dump($mongodb->leerTodasPersonas());
 
 
 $router = new Router();
@@ -32,7 +35,7 @@ $router->guardarRutas('get', '/', function () {
     echo "Estoy en el index.";
 });
 
-//$router->guardarRutas('get','/', [PersonaControlador::class,"index"]);
+    $router->guardarRutas('get','/', [PersonaControlador::class,"index"]);
 
 $router->guardarRutas('get', '/', [LandingVista::class, "mostrarPagina"]);
 $router->guardarRutas('get', '/login', [LoginVista::class, "mostrarLogin"]);
@@ -42,5 +45,10 @@ $router->guardarRutas('post', '/api/persona', [PersonaControlador::class, "guard
 $router->guardarRutas('delete', '/api/persona', [PersonaControlador::class, "borrar"]);
 $router->guardarRutas('put', '/api/persona', [PersonaControlador::class, "modificar"]);
 
+$router->guardarRutas('get', '/api/pista', [PistaControlador::class, "mostrar"]);
+$router->guardarRutas('post', '/api/pista', [PistaControlador::class, "guardar"]);
+$router->guardarRutas('delete', '/api/pista', [PistaControlador::class, "borrar"]);
+$router->guardarRutas('put', '/api/pista', [PistaControlador::class, "modificar"]);
 
-//$router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
+
+$router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);

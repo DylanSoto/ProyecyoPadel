@@ -442,7 +442,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
         $target.carousel(options)
 
-        if (slideIndex = $this.attr('data-slide-to')) {
+        if (slideIndex == $this.attr('data-slide-to')) {
             $target.data('bs.carousel').to(slideIndex)
         }
 
