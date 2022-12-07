@@ -45,10 +45,10 @@ $router->guardarRutas('post', '/api/persona', [PersonaControlador::class, "guard
 $router->guardarRutas('delete', '/api/persona', [PersonaControlador::class, "borrar"]);
 $router->guardarRutas('put', '/api/persona', [PersonaControlador::class, "modificar"]);
 
-$router->guardarRutas('get', '/api/pista', [PistaControlador::class, "mostrar"]);
-$router->guardarRutas('post', '/api/pista', [PistaControlador::class, "guardar"]);
-$router->guardarRutas('delete', '/api/pista', [PistaControlador::class, "borrar"]);
-$router->guardarRutas('put', '/api/pista', [PistaControlador::class, "modificar"]);
+$router->guardarRutas('get', '/api/pistas', [PistaControlador::class, "mostrar"]);
+$router->guardarRutas('post', '/api/pistas', [PistaControlador::class, "guardar"]);
+$router->guardarRutas('delete', '/api/pistas', [PistaControlador::class, "borrar"]);
+$router->guardarRutas('put', '/api/pistas', [PistaControlador::class, "modificar"]);
 
 
 $router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);

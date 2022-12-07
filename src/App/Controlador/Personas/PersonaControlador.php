@@ -59,7 +59,7 @@ class PersonaControlador
     public function index(): void
     {
         $vista = new PersonaVista("Indíce");
-        echo $vista->getHtml()->generarTodaLaPagina();
+        $vista->mostrarPagina();
     }
 
     public function mostrar($dni): void
