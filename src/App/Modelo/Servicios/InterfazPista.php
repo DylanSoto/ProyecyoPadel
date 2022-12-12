@@ -10,6 +10,8 @@ interface InterfazPista
 
     public function modificarPista(Pista $pista): ?Pista;
 
+    public function modificarTodasLasPistas(array $elementosAModificar);
+
     public function borrarPista(Pista $pista): ?Pista;
 
     public function borrarPistaPorId(int $id): ?Pista;
@@ -17,4 +19,6 @@ interface InterfazPista
     public function leerPista(int $id):?Pista;
 
     public function leerTodasLasPistas():?array;
+
+    public function obtenerRangoPistas(int $inicio, int $numeroResultados=NUMERODERESULTADOSPORPAGINA):array;
 }

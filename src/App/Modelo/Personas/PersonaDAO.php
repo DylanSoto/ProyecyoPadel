@@ -3,7 +3,6 @@
 namespace App\Modelo\Personas;
 
 use App\Personas\Persona;
-use PDO;
 
 abstract class PersonaDAO implements InterfazPersonas
 {

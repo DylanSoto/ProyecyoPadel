@@ -7,8 +7,8 @@ use App\Modelo\Excepciones\PersonaNoEncontradaException;
 use App\Personas\Persona;
 use PDO;
 
-require_once __DIR__ . "/../../datosConexionBD.php";
-require_once __DIR__ . "/../../datosConfiguracion.php";
+require_once __DIR__ . "/../../../datosConexionBD.php";
+require_once __DIR__ . "/../../../datosConfiguracion.php";
 
 class PersonaDAOMySQL extends PersonaDAO
 {
