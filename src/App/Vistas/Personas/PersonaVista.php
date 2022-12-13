@@ -10,15 +10,21 @@ class PersonaVista
 
     public function __construct()
     {
-        $this->html= new Plantilla("Personas",encabezadoPrincipal: "Gestión de Personas",
-            descripcionPrincipal: "Bienvenido al apartado para la gestión de personas");
+        $this->html = new Plantilla(
+            "Personas", encabezadoPrincipal: "Gestión de Personas",
+            descripcionPrincipal: "Bienvenido al apartado para la gestión de personas"
+        );
 
         //$this->html->setBody($this->formularioRegistro());
-        $this->html->generarDosColumnasConFondoBlanco("Formulario de registro", $this->formularioRegistro(),$this->formularioLogin());
+        $this->html->generarDosColumnasConFondoBlanco(
+            "Formulario de registro",
+            $this->formularioRegistro(),
+            $this->formularioLogin()
+        );
     }
 
-    private function formularioRegistro():string{
-
+    private function formularioRegistro(): string
+    {
         return "
             <h3>Registrate en nuestro club</h3>
             <form action=/persona/create method=post>
@@ -43,8 +49,8 @@ class PersonaVista
         ";
     }
 
-    private function formularioLogin():string{
-
+    private function formularioLogin(): string
+    {
         return "
             <h3>Entra con tu usuario y contraseña</h3>
             <form action=/persona/create method=post>
@@ -61,7 +67,8 @@ class PersonaVista
         ";
     }
 
-    public function mostrarPagina():void{
+    public function mostrarPagina(): void
+    {
         echo $this->html->generarWebCompleta();
     }
 }

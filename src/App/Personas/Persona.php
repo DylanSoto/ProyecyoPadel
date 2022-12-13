@@ -107,29 +107,29 @@ class Persona implements \JsonSerializable
 
     public function __toString(): string
     {
-      return  $this->nombre." ".$this->apellidos." ".$this->dni;
+        return $this->nombre . " " . $this->apellidos . " " . $this->dni;
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
-            'dni'=> $this->dni,
-            'nombre'=> $this->nombre,
-            'apellidos'=>$this->apellidos,
-            'telefono'=>$this->telefono,
-            'email'=>$this->email
+            'dni' => $this->dni,
+            'nombre' => $this->nombre,
+            'apellidos' => $this->apellidos,
+            'telefono' => $this->telefono,
+            'email' => $this->email
         ];
     }
 
     public function __serialize(): array
     {
         return [
-            'dni'=> $this->dni,
-            'nombre'=> $this->nombre,
-            'apellidos'=>$this->apellidos,
-            'telefono'=>$this->telefono,
-            'email'=>$this->email,
-            'contrasenya'=>$this->contrasenya
+            'dni' => $this->dni,
+            'nombre' => $this->nombre,
+            'apellidos' => $this->apellidos,
+            'telefono' => $this->telefono,
+            'email' => $this->email,
+            'contrasenya' => $this->contrasenya
         ];
     }
 }

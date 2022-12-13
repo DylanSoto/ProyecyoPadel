@@ -2,8 +2,14 @@
 
 namespace App\Controlador\Servicios;
 
+use App\Horarios\Execptions\HoraNoValidaException;
+use App\Modelo\Excepciones\ActualizarPistasException;
+use App\Modelo\Excepciones\ParametrosDePistaIncorrectosException;
+use App\Modelo\Excepciones\PistaNoEncontradaException;
 use App\Modelo\Servicios\PistaDAO;
+use App\Modelo\Servicios\PistaDAOMySQL;
 use App\Servicios\Pista;
+use App\Vistas\Servicios\PistaVista;
 
 class PistaControlador
 {
@@ -27,9 +33,13 @@ class PistaControlador
         echo json_encode($this->modelo->leerTodasLasPistas(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @throws HoraNoValidaException
+     * @throws PistaNoEncontradaException
+     */
     public function mostrarDatosPista($idPista): void
     {
-        echo json_encode($this->modelo->leerPista(), JSON_PRETTY_PRINT);
+        echo json_encode($this->modelo->leerPista($idPista), JSON_PRETTY_PRINT);
     }
 
     public function mostrar($idPista): void
@@ -45,6 +55,9 @@ class PistaControlador
         }
     }
 
+    /**
+     * @throws ParametrosDePistaIncorrectosException
+     */
     public function guardar(): void
     {
         $respuestaControlPista = $this->comprobarDatosPistaCorrectos('post');
@@ -56,8 +69,6 @@ class PistaControlador
                 $_POST['precioLuz'],
                 $_POST['tipoPista'],
                 $_POST['cubierta'],
-                $_POST['disponible'],
-                $_POST['reservasPistaMensuales'],
             );
             $this->modelo->insertarPista($pista);
         } else {
@@ -90,12 +101,6 @@ class PistaControlador
             }
             if (!isset($_POST['cubierta'])) {
                 $arrayFallos[] = 'cubierta';
-            }
-            if (!isset($_POST['disponible'])) {
-                $arrayFallos[] = 'disponible';
-            }
-            if (!isset($_POST['reservasPistaMensuales'])) {
-                $arrayFallos[] = 'reservasPistaMensuales';
             }
         }
         if (count($arrayFallos) > 0) {
@@ -149,12 +154,6 @@ class PistaControlador
             }
             if (isset($put_vars['cubierta'])) {
                 $pista->setCubierta($put_vars['cubierta']);
-            }
-            if (isset($put_vars['disponible'])) {
-                $pista->setDisponible($put_vars['disponible']);
-            }
-            if (isset($put_vars['reservasPistaMenusales'])) {
-                $pista->setReservasPistasMensual($put_vars['reservasPistaMenusales']);
             }
             $this->modelo->modificarPista($pista);
         } else {

@@ -53,4 +53,9 @@ class PistaDAO implements InterfazPista
     {
         //TODO: Implement obtenerRangoPersona() method.
     }
+
+    public function modificarTodasLasPistas(array $elementosAModificar)
+    {
+        // TODO: Implement modificarTodasLasPistas() method.
+    }
 }

@@ -19,8 +19,7 @@ class LoginVista
     }
 
     public function generarFormularioLogin():string{
-
-        $salida="
+        return "
             <form action='/logear' method='post'>
             <label for='inputCorreo'>Introduce tu correo</label>
             <input type='email' name='correoelectronico' id='inputCorreo'>
@@ -29,11 +28,10 @@ class LoginVista
             <button type='submit'>Enviar</button>
             </form>
         ";
-        return $salida;
     }
 
     public function generarFormularioRegistro():string{
-        $salida="
+        return "
             <form action='/api/persona' method='post'>
             <label for='inputDNI'>Introduce tu dni</label>
             <input type='text' name='dni' id='inputDNI'>
@@ -51,7 +49,6 @@ class LoginVista
             
             </form>
         ";
-        return $salida;
 
     }
     public function mostrarLogin():void{

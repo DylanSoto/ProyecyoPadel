@@ -2,14 +2,10 @@
 
 namespace App\Servicios;
 
-include __DIR__."../../autoload.php";
 
-use App\Horarios\HorarioDiario;
-use App\Horarios\HorarioMensual;
-use App\Personas\Jugador;
 use App\Servicios\Enum\TipoPista;
 
-class Pista extends HorarioMensual
+class Pista implements \JsonSerializable
 {
     private int $idPista;
     private float $precio;
@@ -18,19 +14,17 @@ class Pista extends HorarioMensual
     private TipoPista $tipoPista;
     private bool $cubierta;
     private bool $disponible;
-    private array $reservasPistasMensual;
+    private array $reservasPistaMensual;
 
-    public function __construct(int $horaInicio, int $horaFin, bool $disponibilidad, Jugador $socioReservado, \DateTime $fecha, \DateTime $horaApertura, \DateTime $horaCierre, int $duracionIntervalos, array $intervalosDia, int $mes, int $anyo, HorarioDiario $horarioDiario, int $idPista, float $precio, bool $luz, float $precioLuz, TipoPista $tipoPista, bool $cubierta, bool $disponible, array $reservasPistasMensual)
+    public function __construct($idPista, $precio, $luz, $precioLuz, $tipoPista, $cubierta)
     {
-        parent::__construct($horaInicio, $horaFin, $disponibilidad, $socioReservado, $fecha, $horaApertura, $horaCierre, $duracionIntervalos, $intervalosDia, $mes, $anyo, $horarioDiario);
         $this->idPista = $idPista;
         $this->precio = $precio;
         $this->luz = $luz;
         $this->precioLuz = $precioLuz;
         $this->tipoPista = $tipoPista;
         $this->cubierta = $cubierta;
-        $this->disponible = $disponible;
-        $this->reservasPistasMensual = $reservasPistasMensual;
+        $this->disponible = true;
     }
 
     /**
@@ -148,20 +142,51 @@ class Pista extends HorarioMensual
     /**
      * @return array
      */
-    public function getReservasPistasMensual(): array
+    public function getReservasPistaMensual(): array
     {
-        return $this->reservasPistasMensual;
+        return $this->reservasPistaMensual;
     }
 
     /**
-     * @param array $reservasPistasMensual
+     * @param array $reservasPistaMensual
      */
-    public function setReservasPistasMensual(array $reservasPistasMensual): void
+    public function setReservasPistaMensual(array $reservasPistaMensual): void
     {
-        $this->reservasPistasMensual = $reservasPistasMensual;
+        $this->reservasPistaMensual = $reservasPistaMensual;
     }
 
-    /*public function generarHorarioMes() : Pista{
-        return ;
-    }*/
+
+
+    public function generarHorarioMensual(): Pista
+    {
+        //TODO implmentar generador de Horarios
+        return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'idPista' => $this->idPista,
+            'precio' => $this->precio,
+            'luz' => $this->luz,
+            'precioLuz ' => $this->precioLuz,
+            'tipoPista' => $this->tipoPista,
+            'cubierta' => $this->cubierta,
+            'disponible' => $this->disponible
+        ];
+    }
+
+    public function __serialize(): array
+    {
+        return [
+            'idPista' => $this->idPista,
+            'precio' => $this->precio,
+            'luz' => $this->luz,
+            'precioLuz ' => $this->precioLuz,
+            'tipoPista' => $this->tipoPista,
+            'cubierta' => $this->cubierta,
+            'disponible' => $this->disponible
+        ];
+    }
+
 }

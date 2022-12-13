@@ -4,6 +4,7 @@ namespace App\Servicios\Enum;
 
 enum TipoPista
 {
-    case individual;
-    case doble;
+    case Individual;
+    case Doble;
+
 }
