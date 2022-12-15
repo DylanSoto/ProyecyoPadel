@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql/persona.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/App/Modelo/Personas/PersonaDAOMySQL.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/App/Modelo/Servicios/ParqueBolasDAOMySQL.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/App/Modelo/Servicios/PistaDAOMySQL.php" dialect="GenericSQL" />
   </component>
 </project>
