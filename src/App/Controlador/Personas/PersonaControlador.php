@@ -30,6 +30,12 @@ class PersonaControlador
         }
     }
 
+    public function cerrarSesion():void
+    {
+        session_destroy();
+        header("refresh:0;url=/");
+    }
+
     public function comprobarUsuarioWeb($correoUsuario, $pass): void
     {
         $persona = $this->modelo->leerPersonaPorEmail($correoUsuario);
@@ -37,6 +43,8 @@ class PersonaControlador
             session_start();
             $_SESSION['logeado'] = true;
             $_SESSION['usuario'] = $this->modelo->leerPersonaPorEmail($correoUsuario)->getNombre();
+            setcookie("apodo", "mike", time()+3600);
+            echo "<a href='/'>Volver al inicio</a>";
         } else {
             echo "que va que va";
         }
@@ -100,7 +108,7 @@ class PersonaControlador
                 $_POST['dni'],
                 $_POST['nombre'],
                 $_POST['apellidos'],
-                $_POST['email'],
+                $_POST['correoelectronico'],
                 password_hash($_POST['contrasenya'], PASSWORD_DEFAULT)
             );
             if (isset($_POST['telefono'])) {
@@ -114,6 +122,7 @@ class PersonaControlador
             }
             throw new ParametrosDePersonaIncorrectosException($mensajeError);
         }
+        header("refresh:0;url=/");
     }
 
     private function comprobarDatosPersonaCorrectos($metodo): array|bool

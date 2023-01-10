@@ -10,15 +10,16 @@ class LoginVista
 
     public function __construct()
     {
-        $this->html= new Plantilla("Login de usuarios",encabezadoPrincipal: "Cobra Padel",
-            descripcionPrincipal:"Inicia sesión para acceder a tu cuenta");
+        $this->html = new Plantilla("Login de usuarios", encabezadoPrincipal: "Cobra Padel",
+            descripcionPrincipal: "Inicia sesión para acceder a tu cuenta");
         $this->html->generarDosColumnasConFondoBlanco
         ("Introduce tus datos",
             $this->generarFormularioLogin(),
             $this->generarFormularioRegistro());
     }
 
-    public function generarFormularioLogin():string{
+    public function generarFormularioLogin(): string
+    {
         return "
             <form action='/logear' method='post'>
             <label for='inputCorreo'>Introduce tu correo</label>
@@ -30,7 +31,8 @@ class LoginVista
         ";
     }
 
-    public function generarFormularioRegistro():string{
+    public function generarFormularioRegistro(): string
+    {
         return "
             <form action='/api/persona' method='post'>
             <label for='inputDNI'>Introduce tu dni</label>
@@ -51,7 +53,9 @@ class LoginVista
         ";
 
     }
-    public function mostrarLogin():void{
+
+    public function mostrarLogin(): void
+    {
         echo $this->html->generarWebCompleta();
     }
 
