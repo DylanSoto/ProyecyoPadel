@@ -51,7 +51,7 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 COPY ./debug.ini "${PHP_INI_DIR}/conf.d"
 
-#RUN pecl install mongodb apcu && docker-php-ext-enable mongodb apcu
+RUN pecl install mongodb apcu && docker-php-ext-enable mongodb apcu
 
 # instalación de phpunit
 RUN composer global require phpunit/phpunit && ln -s /var/www/html/vendor/bin/phpunit /usr/local/bin/phpunit

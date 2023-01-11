@@ -2,6 +2,9 @@
 
 namespace App\Personas;
 
+use App\Log\LogFactorty;
+use Monolog\Logger;
+
 class Persona implements \JsonSerializable
 {
     private string $dni;
@@ -11,6 +14,7 @@ class Persona implements \JsonSerializable
     private string $email;
     private string $contrasenya;
 
+    private Logger $log;
 
     public function __construct(
         string $dni,
@@ -26,6 +30,8 @@ class Persona implements \JsonSerializable
         $this->telefono = $telefono;
         $this->email = $email;
         $this->contrasenya = $contrasenya;
+
+        $this->log = LogFactorty::getLoger();
     }
 
 
